@@ -1,0 +1,228 @@
+<title>Ten Things to Ask For</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,500;0,600;0,700;0,800;1,600&display=swap">
+<style>
+:root{
+  --paper:#F1F1EA; --paper-2:#FFFFFF; --paper-3:#E3E4DB;
+  --ink:#16171C; --ink-2:#585B62;
+  --pink:#E01A6F; --pink-soft:#FFD9E8;
+  --blue:#1240BC; --blue-soft:#D3DEFA;
+  --yellow:#B8860B; --yellow-soft:#FFF0B8;
+  --green:#00794A; --green-soft:#CBEBD9;
+  --on-acc:#FFFFFF; --shadow:rgba(22,23,28,.18);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#17181D; --paper-2:#212229; --paper-3:#101116;
+    --ink:#F0EFE7; --ink-2:#A2A49B;
+    --pink:#FF74AC; --pink-soft:#4A1E33;
+    --blue:#8FB0F7; --blue-soft:#1C2A4D;
+    --yellow:#FFD84D; --yellow-soft:#453A16;
+    --green:#4FCF95; --green-soft:#12362A;
+    --on-acc:#17181D; --shadow:rgba(0,0,0,.55);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#17181D; --paper-2:#212229; --paper-3:#101116;
+  --ink:#F0EFE7; --ink-2:#A2A49B;
+  --pink:#FF74AC; --pink-soft:#4A1E33;
+  --blue:#8FB0F7; --blue-soft:#1C2A4D;
+  --yellow:#FFD84D; --yellow-soft:#453A16;
+  --green:#4FCF95; --green-soft:#12362A;
+  --on-acc:#17181D; --shadow:rgba(0,0,0,.55);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);overflow-wrap:break-word;
+  font-family:"Lexend",system-ui,-apple-system,sans-serif;font-size:1.16rem;line-height:1.5;-webkit-font-smoothing:antialiased}
+.marker{font-family:"Shantell Sans","Comic Sans MS",cursive}
+.wrap{max-width:54rem;margin:0 auto;padding:0 1.15rem}
+p{margin:0 0 .8rem;max-width:34rem}
+a{color:var(--pink)}
+:is(a,button,[tabindex]):focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+
+header{padding:2.4rem 0 1.4rem}
+.kick{display:inline-block;background:var(--ink);color:var(--paper);padding:.28rem .75rem;
+  border-radius:6px;transform:rotate(-1.5deg);font-family:"Shantell Sans",cursive;font-weight:700;font-size:.88rem}
+h1{font-family:"Shantell Sans",cursive;font-weight:800;line-height:.94;margin:.7rem 0 0;
+  font-size:clamp(2.5rem,10vw,5rem);letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--pink)}
+.sub{font-size:1.24rem;font-weight:500;margin-top:.9rem;max-width:30rem}
+
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:.9rem;margin:1.6rem 0 0}
+.rule{border:3px solid var(--ink);border-radius:14px;padding:.85rem .95rem;background:var(--paper-2);
+  box-shadow:4px 4px 0 var(--ink)}
+.rule b{font-family:"Shantell Sans",cursive;font-weight:800;font-size:1.7rem;line-height:1;color:var(--pink);display:block}
+.rule p{margin:.3rem 0 0;font-size:1.02rem;max-width:none}
+
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:2rem 0 0}
+.chip{font-family:"Shantell Sans",cursive;font-weight:700;font-size:.95rem;text-decoration:none;
+  border:2.5px solid var(--ink);border-radius:40px;padding:.28rem .8rem;color:var(--ink);background:var(--paper-2)}
+.chip:hover{background:var(--yellow-soft)}
+.chip.pink{border-color:var(--pink)}.chip.blue{border-color:var(--blue)}
+.chip.yellow{border-color:var(--yellow)}.chip.green{border-color:var(--green)}
+
+main{padding:1.6rem 0 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(19rem,1fr));gap:1.3rem;margin-top:1.4rem}
+.card{border:3px solid var(--ink);border-radius:16px;background:var(--paper-2);
+  box-shadow:6px 6px 0 var(--ink);padding:1rem 1.1rem 1.1rem;scroll-margin-top:1rem}
+.chead{display:flex;align-items:center;gap:.7rem;margin-bottom:.7rem}
+.cn{width:2.5rem;height:2.5rem;flex:0 0 auto;border:3px solid var(--ink);border-radius:50%;
+  display:grid;place-items:center;font-weight:800;font-size:1.25rem;color:var(--on-acc)}
+.card h2{font-family:"Shantell Sans",cursive;font-weight:800;font-size:1.5rem;line-height:1.05;margin:0}
+.card.pink .cn{background:var(--pink)} .card.blue .cn{background:var(--blue)}
+.card.yellow .cn{background:var(--yellow)} .card.green .cn{background:var(--green)}
+.card.pink{background:var(--pink-soft)} .card.blue{background:var(--blue-soft)}
+.card.yellow{background:var(--yellow-soft)} .card.green{background:var(--green-soft)}
+.row{padding:.5rem 0;border-top:2px solid color-mix(in srgb,var(--ink) 15%,transparent)}
+.row:first-of-type{border-top:0}
+.k{display:block;font-family:"Shantell Sans",cursive;font-weight:700;font-size:.78rem;
+  text-transform:uppercase;letter-spacing:.05em;color:var(--ink-2);margin-bottom:.1rem}
+.v{display:block;font-size:1.04rem;line-height:1.42}
+.v.bub{font-family:"Shantell Sans",cursive;font-weight:600;font-size:1.12rem;
+  background:var(--paper-2);border:2.5px solid var(--ink);border-radius:16px;padding:.4rem .7rem;margin-top:.15rem}
+.v.bub::before{content:"\201C"}.v.bub::after{content:"\201D"}
+
+footer{margin-top:2.6rem;padding:2rem 0 3.4rem;background:var(--paper-3)}
+.colo{font-size:.98rem;color:var(--ink-2);max-width:33rem}
+.colo strong{color:var(--ink)}
+.grown{border:3px dashed var(--ink);border-radius:14px;padding:1rem;margin-top:1.4rem;background:var(--paper-2)}
+.grown h3{font-family:"Shantell Sans",cursive;margin:0 0 .35rem;font-size:1.08rem}
+.grown p{margin:0;font-size:1rem;max-width:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  :root,:root[data-theme="dark"]{
+    --paper:#fff !important; --paper-2:#fff !important; --paper-3:#fff !important;
+    --ink:#000 !important; --ink-2:#333 !important;
+    --pink:#A81254 !important; --pink-soft:#fff !important;
+    --blue:#0D3494 !important; --blue-soft:#fff !important;
+    --yellow:#7A5A08 !important; --yellow-soft:#fff !important;
+    --green:#0A5E3A !important; --green-soft:#fff !important;
+    --on-acc:#fff !important; --shadow:transparent !important;
+  }
+  body{background:#fff;color:#000;font-size:10pt}
+  .chips{display:none}
+  .card,.rule{box-shadow:none;border:1px solid #000;page-break-inside:avoid}
+  .cn{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .cards{grid-template-columns:1fr 1fr}
+  a{color:#000;text-decoration:none}
+}
+</style>
+
+<header><div class="wrap">
+  <span class="kick">The Big Ask &middot; Kid Cut &middot; Nos. 02&ndash;11</span>
+  <h1 class="marker">Ten things<br>you&rsquo;re going<br>to <em>ask for</em></h1>
+  <p class="sub">One card each. What they&rsquo;re actually scared of, what to say, and the one job that does the work.</p>
+
+  <div class="rules">
+    <div class="rule"><b>1</b><p>Asking again doesn&rsquo;t work. Proof does.</p></div>
+    <div class="rule"><b>2</b><p>Find out what they&rsquo;re scared of. It&rsquo;s never the thing you think.</p></div>
+    <div class="rule"><b>3</b><p>&ldquo;Not yet&rdquo; isn&rsquo;t &ldquo;no&rdquo; &mdash; but only if you get a date.</p></div>
+  </div>
+  <nav class="chips" aria-label="Jump to an ask"><a class="chip pink" href="#c02">A phone</a><a class="chip blue" href="#c03">Being online</a><a class="chip yellow" href="#c04">A sleepover</a><a class="chip green" href="#c05">Going on your own</a><a class="chip pink" href="#c06">Quitting</a><a class="chip blue" href="#c07">Staying home alone</a><a class="chip yellow" href="#c08">Your own money</a><a class="chip green" href="#c09">A job</a><a class="chip pink" href="#c10">How you look</a><a class="chip blue" href="#c11">Going out with someone</a></nav>
+</div></header>
+
+<main><div class="wrap">
+  <div class="cards">
+
+<article class="card pink" id="c02">
+  <div class="chead"><span class="cn marker">02</span><h2 class="marker">A phone</h2></div>
+  <div class="row"><span class="k">They&rsquo;re scared of</span><span class="v">You disappearing into it.</span></div>
+  <div class="row"><span class="k">Say</span><span class="v bub">Can we start with one that just calls and texts?</span></div>
+  <div class="row"><span class="k">Don&rsquo;t say</span><span class="v">&ldquo;Everyone has one.&rdquo; They know. It has never once worked.</span></div>
+  <div class="row"><span class="k">Your job</span><span class="v"><b>Put it in the kitchen at night before they ask you to.</b></span></div>
+  <div class="row"><span class="k">If they say not yet</span><span class="v">Ask what you&rsquo;d have to show them. Then show them, for a month.</span></div>
+</article>
+
+<article class="card blue" id="c03">
+  <div class="chead"><span class="cn marker">03</span><h2 class="marker">Being online</h2></div>
+  <div class="row"><span class="k">They&rsquo;re scared of</span><span class="v">Strangers, and stuff that never goes away.</span></div>
+  <div class="row"><span class="k">Say</span><span class="v bub">You can follow my account. I&rsquo;d rather you saw it than found it.</span></div>
+  <div class="row"><span class="k">Don&rsquo;t say</span><span class="v">&ldquo;You don&rsquo;t get it.&rdquo; Maybe not. Doesn&rsquo;t help you.</span></div>
+  <div class="row"><span class="k">Your job</span><span class="v"><b>Tell them one thing that happened online before they hear it from someone else.</b></span></div>
+  <div class="row"><span class="k">If they say not yet</span><span class="v">Ask for a group chat with people you both know.</span></div>
+</article>
+
+<article class="card yellow" id="c04">
+  <div class="chead"><span class="cn marker">04</span><h2 class="marker">A sleepover</h2></div>
+  <div class="row"><span class="k">They&rsquo;re scared of</span><span class="v">You at 1am, in a house they&rsquo;ve never been in.</span></div>
+  <div class="row"><span class="k">Say</span><span class="v bub">If I want to come home I&rsquo;ll text you. I won&rsquo;t be embarrassed.</span></div>
+  <div class="row"><span class="k">Don&rsquo;t say</span><span class="v">&ldquo;I&rsquo;ll be fine!&rdquo; Then at 1am you&rsquo;re stuck being fine.</span></div>
+  <div class="row"><span class="k">Your job</span><span class="v"><b>Pick a code word together. Boring. Works.</b></span></div>
+  <div class="row"><span class="k">If they say not yet</span><span class="v">Ask for a late&#8209;over. All the fun, home at nine.</span></div>
+</article>
+
+<article class="card green" id="c05">
+  <div class="chead"><span class="cn marker">05</span><h2 class="marker">Going on your own</h2></div>
+  <div class="row"><span class="k">They&rsquo;re scared of</span><span class="v">Roads. Honestly, mostly roads.</span></div>
+  <div class="row"><span class="k">Say</span><span class="v bub">Can we walk it together three times first?</span></div>
+  <div class="row"><span class="k">Don&rsquo;t say</span><span class="v">&ldquo;Nothing&rsquo;s going to happen.&rdquo; You can&rsquo;t promise that.</span></div>
+  <div class="row"><span class="k">Your job</span><span class="v"><b>Say out loud what you&rsquo;d do if the shop&rsquo;s shut and your phone&rsquo;s dead. Before they ask.</b></span></div>
+  <div class="row"><span class="k">If they say not yet</span><span class="v">Ask for half the route.</span></div>
+</article>
+
+<article class="card pink" id="c06">
+  <div class="chead"><span class="cn marker">06</span><h2 class="marker">Quitting</h2></div>
+  <div class="row"><span class="k">They&rsquo;re scared of</span><span class="v">That you&rsquo;ll quit everything from now on.</span></div>
+  <div class="row"><span class="k">Say</span><span class="v bub">I want to stop at the end of term. Not today.</span></div>
+  <div class="row"><span class="k">Don&rsquo;t say</span><span class="v">&ldquo;I hate it.&rdquo; That&rsquo;s a noise, not information.</span></div>
+  <div class="row"><span class="k">Your job</span><span class="v"><b>Work out which bit you hate: the thing, the person, or the practising. Three different problems.</b></span></div>
+  <div class="row"><span class="k">If they say not yet</span><span class="v">Ask to change one thing and try three more weeks.</span></div>
+</article>
+
+<article class="card blue" id="c07">
+  <div class="chead"><span class="cn marker">07</span><h2 class="marker">Staying home alone</h2></div>
+  <div class="row"><span class="k">They&rsquo;re scared of</span><span class="v">The doorbell. And you not picking up.</span></div>
+  <div class="row"><span class="k">Say</span><span class="v bub">Give me twenty minutes while you get milk.</span></div>
+  <div class="row"><span class="k">Don&rsquo;t say</span><span class="v">&ldquo;I&rsquo;m not a baby.&rdquo; True. Still annoying.</span></div>
+  <div class="row"><span class="k">Your job</span><span class="v"><b>Answer your phone. Every time. Miss it once and this gets very slow.</b></span></div>
+  <div class="row"><span class="k">If they say not yet</span><span class="v">Ask for ten minutes while they&rsquo;re in the garden.</span></div>
+</article>
+
+<article class="card yellow" id="c08">
+  <div class="chead"><span class="cn marker">08</span><h2 class="marker">Your own money</h2></div>
+  <div class="row"><span class="k">They&rsquo;re scared of</span><span class="v">Paying for the same thing twice.</span></div>
+  <div class="row"><span class="k">Say</span><span class="v bub">If I buy something rubbish, don&rsquo;t replace it.</span></div>
+  <div class="row"><span class="k">Don&rsquo;t say</span><span class="v">&ldquo;Can I have it early?&rdquo; Not once. Ever.</span></div>
+  <div class="row"><span class="k">Your job</span><span class="v"><b>Save for one thing all the way to the end, where they can watch you do it.</b></span></div>
+  <div class="row"><span class="k">If they say not yet</span><span class="v">Ask for less, weekly, in cash.</span></div>
+</article>
+
+<article class="card green" id="c09">
+  <div class="chead"><span class="cn marker">09</span><h2 class="marker">A job</h2></div>
+  <div class="row"><span class="k">They&rsquo;re scared of</span><span class="v">Your sleep.</span></div>
+  <div class="row"><span class="k">Say</span><span class="v bub">Cap my hours, and check my grades in a month.</span></div>
+  <div class="row"><span class="k">Don&rsquo;t say</span><span class="v">&ldquo;It won&rsquo;t affect anything.&rdquo; It will. Say so first.</span></div>
+  <div class="row"><span class="k">Your job</span><span class="v"><b>Make the phone calls yourself. Including the awkward one.</b></span></div>
+  <div class="row"><span class="k">If they say not yet</span><span class="v">Ask to do one paid thing first. Babysitting. Someone&rsquo;s garden.</span></div>
+</article>
+
+<article class="card pink" id="c10">
+  <div class="chead"><span class="cn marker">10</span><h2 class="marker">How you look</h2></div>
+  <div class="row"><span class="k">They&rsquo;re scared of</span><span class="v">Only the permanent ones. That&rsquo;s genuinely it.</span></div>
+  <div class="row"><span class="k">Say</span><span class="v bub">This one washes out. Can that one be mine?</span></div>
+  <div class="row"><span class="k">Don&rsquo;t say</span><span class="v">&ldquo;It&rsquo;s my body.&rdquo; True. Still loses the argument.</span></div>
+  <div class="row"><span class="k">Your job</span><span class="v"><b>Split your list into grows&#8209;back and doesn&rsquo;t. Ask for the grows&#8209;back ones first.</b></span></div>
+  <div class="row"><span class="k">If they say not yet</span><span class="v">Get a date for the permanent one. Then drop it until then.</span></div>
+</article>
+
+<article class="card blue" id="c11">
+  <div class="chead"><span class="cn marker">11</span><h2 class="marker">Going out with someone</h2></div>
+  <div class="row"><span class="k">They&rsquo;re scared of</span><span class="v">You telling them nothing at all.</span></div>
+  <div class="row"><span class="k">Say</span><span class="v bub">Do you want to meet them?</span></div>
+  <div class="row"><span class="k">Don&rsquo;t say</span><span class="v">Saying nothing. Silence makes grown&#8209;ups invent things.</span></div>
+  <div class="row"><span class="k">Your job</span><span class="v"><b>Tell them one boring true thing early. It buys you privacy about the rest.</b></span></div>
+  <div class="row"><span class="k">If they say not yet</span><span class="v">Ask exactly what&rsquo;s allowed right now. Exactly.</span></div>
+</article>
+  </div>
+</div></main>
+
+<footer><div class="wrap">
+  <p class="colo"><strong>Made by a computer.</strong> All of this &mdash; the writing, the drawing, the lot &mdash; was made by an AI called Claude. There&rsquo;s no person behind it. You should know that when someone gives you advice.</p>
+  <p class="colo">The advice is real though. It&rsquo;s the same stuff in the grown&#8209;up version, with fewer words.</p>
+  <p class="colo">Want the long version of how any of this works? <a href="https://claude.ai/code/artifact/a2f0380d-366a-4424-b2a4-bedd9ef126cf" target="_blank" rel="noopener">The Case for a Dog</a> takes one ask apart properly, with a tracker and a page you can build.</p>
+  <div class="grown">
+    <h3 class="marker">For the grown&#8209;up reading over a shoulder</h3>
+    <p>This is the child&rsquo;s edition of <a href="https://claude.ai/code/artifact/7dd95626-01a6-4380-abed-d1bdd10a545f" target="_blank" rel="noopener">Ten More Big Asks</a>. Nothing here contradicts yours. It tells them three things: that asking repeatedly fails, that you are worried about something specific and findable, and that &ldquo;not yet&rdquo; is a real answer <em>if</em> it comes with a date. If you are going to say not yet, please bring the date.</p>
+  </div>
+</div></footer>

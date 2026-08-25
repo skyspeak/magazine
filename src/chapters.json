@@ -1,0 +1,47 @@
+[
+ {
+  "t": 0.0,
+  "label": "0:00",
+  "title": "Cold open"
+ },
+ {
+  "t": 45.7,
+  "label": "0:45",
+  "title": "Episode one"
+ },
+ {
+  "t": 88.2,
+  "label": "1:28",
+  "title": "1. The number nobody says"
+ },
+ {
+  "t": 225.1,
+  "label": "3:45",
+  "title": "2. The six a.m. February test"
+ },
+ {
+  "t": 300.7,
+  "label": "5:00",
+  "title": "3. The part nobody previews"
+ },
+ {
+  "t": 365.2,
+  "label": "6:05",
+  "title": "4. What to actually say"
+ },
+ {
+  "t": 478.6,
+  "label": "7:58",
+  "title": "5. The two-week trial"
+ },
+ {
+  "t": 549.7,
+  "label": "9:09",
+  "title": "Voicemail: 'I'm quietly furious'"
+ },
+ {
+  "t": 648.5,
+  "label": "10:48",
+  "title": "How to land it"
+ }
+]

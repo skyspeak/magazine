@@ -1,0 +1,13 @@
+# Intermediate render artefacts — regenerate with src/render*.py
+audio/parts/
+audio/kidparts/
+*.wav
+
+# Generator output fragments (assembled into the published HTML)
+issues_body.html
+kid_body.html
+
+# OS / editor
+.DS_Store
+__pycache__/
+*.pyc
