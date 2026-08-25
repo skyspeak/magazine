@@ -35,15 +35,18 @@ the thing, staying home alone, money of their own, a first job, changing how
 they look, and going out with someone. The kid's edition of those ten is one
 card per ask, about sixty words each.
 
-Each page is a single self-contained HTML file. No build step, no dependencies,
-no network calls except Google Fonts. Open one in a browser and it works.
+`index.html` at the root is the cover: it links to all four editions and both
+episodes.
+
+Every page is one HTML file with no build step and no dependencies. The only
+outbound requests are Google Fonts and, on Issue No. 01, the episode audio.
 
 ## The episodes
 
 Two podcast episodes for Issue No. 01, in `audio/`. The voices are macOS speech
 synthesis; the scripts were written for the ear, not adapted from the page. The
-episodes are embedded in the HTML as base64 so the pages stay self-contained,
-and are also here as standalone files.
+players in Issue No. 01 stream these files with chapter jumping, so the pages
+themselves stay small.
 
 | Episode | Length | File |
 |---|---|---|
@@ -51,7 +54,11 @@ and are also here as standalone files.
 | Kids — *How to ask for a dog* | 6:33 | `audio/no-01-dog-kids.m4a` |
 
 Transcripts are in `transcripts/`. The `-web` files are the lower-bitrate
-versions that are actually embedded in the pages.
+versions the pages stream; the others are the higher-bitrate downloads.
+
+Chapter jumping needs a server that honours HTTP `Range` requests. GitHub Pages
+does. Python's `http.server` does **not** — audio will play from the start but
+will not seek, which is a property of that server, not of the page.
 
 ## Rebuilding the audio
 
@@ -98,6 +105,41 @@ Things worth preserving if you change the CSS:
 - Nothing typed into any worksheet is stored or transmitted. The only exception
   is the kids' fourteen-morning tracker, which uses `localStorage` and degrades
   gracefully when it is unavailable.
+
+## Deploying
+
+The repo is the site. Settings -> Pages -> Source: *Deploy from a branch*,
+branch `main`, folder `/ (root)`. It goes live at
+`https://skyspeak.github.io/magazine/` and redeploys on every push. The
+`.nojekyll` file stops Jekyll from processing the tree.
+
+Nothing here needs a build pipeline, serverless functions, previews or edge
+config, so a static host is the whole requirement.
+
+## Two forms of the same page
+
+The files in `parents/` and `kids/` are the **web** form: they stream audio from
+`audio/` and link to each other by relative path. That is right for a website
+and wrong for a Claude Artifact, which must be a single file with no siblings.
+
+`src/build_artifact.py` produces the Artifact form in `build/` (gitignored) by
+inlining the audio as a base64 data URI and re-pointing the cross-links at the
+published Artifact URLs:
+
+```bash
+python3 src/build_artifact.py            # all four
+python3 src/build_artifact.py magazine   # just one
+```
+
+The difference is not small. Inlining costs about 33% on top of the audio and
+has to arrive before the page renders:
+
+| | web | artifact |
+|---|---|---|
+| `no-01-so-you-want-a-dog.html` | 80 KB | 3.83 MB |
+| `no-01-the-case-for-a-dog.html` | 47 KB | 2.10 MB |
+
+Edit the web version. Treat `build/` as output.
 
 ## A note on the numbers
 

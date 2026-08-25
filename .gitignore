@@ -11,3 +11,6 @@ kid_body.html
 .DS_Store
 __pycache__/
 *.pyc
+
+# Self-contained copies built for publishing as Artifacts
+build/

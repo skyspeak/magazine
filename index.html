@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Big Ask</title>
+<meta name="description" content="A magazine about the first big decisions parents and kids make together. Every issue comes in two halves: one for you, one for them.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700&family=Courier+Prime:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&display=swap">
+<style>
+:root{
+  --paper:#E9E7DE; --paper-2:#F3F1EA; --paper-3:#DEDBCF;
+  --ink:#191B1E; --ink-2:#5B5E58; --ink-3:#83867D;
+  --rule:#C6C2B3; --brass:#9A6E11; --brass-wash:#E3D6B4; --stamp:#A3382A;
+  --pink:#B01458;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#15171B; --paper-2:#1D2025; --paper-3:#101215;
+    --ink:#E7E4D9; --ink-2:#9DA097; --ink-3:#7A7D75;
+    --rule:#343943; --brass:#CFA13A; --brass-wash:#3A3117; --stamp:#DE6E58;
+    --pink:#FF74AC;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#15171B; --paper-2:#1D2025; --paper-3:#101215;
+  --ink:#E7E4D9; --ink-2:#9DA097; --ink-3:#7A7D75;
+  --rule:#343943; --brass:#CFA13A; --brass-wash:#3A3117; --stamp:#DE6E58;
+  --pink:#FF74AC;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);overflow-wrap:break-word;
+  font-family:"Source Serif 4",Charter,Georgia,serif;font-size:1.06rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:58rem;margin:0 auto;padding:0 1.4rem}
+a{color:var(--ink)}
+:is(a,button):focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+.top{border-bottom:1px solid var(--ink);padding:.5rem 0;font-family:"Courier Prime",monospace;
+  font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.top .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+header{padding:3rem 0 2rem;border-bottom:3px solid var(--ink)}
+h1{font-family:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;font-weight:900;
+  text-transform:uppercase;line-height:.82;font-size:clamp(3.4rem,15vw,9rem);margin:0;letter-spacing:-.012em}
+h1 .the{display:block;font-size:.24em;letter-spacing:.4em;color:var(--ink-2);margin-bottom:.4em}
+.dek{max-width:34rem;margin:1.2rem 0 0;font-size:1.2rem}
+.dek b{color:var(--brass)}
+main{padding:2.4rem 0 0}
+h2.sec{font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:800;text-transform:uppercase;
+  font-size:1.5rem;margin:0 0 .1rem;line-height:1}
+.sub{font-family:"Courier Prime",monospace;font-size:.68rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3);margin:0 0 1rem}
+.issue{border-bottom:1px solid var(--rule);padding-bottom:2rem;margin-bottom:2rem}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1rem}
+.ed{display:block;text-decoration:none;border:2px solid var(--ink);background:var(--paper-2);
+  padding:1rem 1.1rem;transition:transform .12s,box-shadow .12s;box-shadow:5px 5px 0 var(--paper-3)}
+.ed:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--brass-wash)}
+.ed .who{font-family:"Courier Prime",monospace;font-size:.64rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--brass);display:block}
+.ed.kid .who{color:var(--pink)}
+.ed h3{font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:800;text-transform:uppercase;
+  font-size:1.7rem;line-height:.98;margin:.15rem 0 .4rem;text-wrap:balance}
+.ed p{margin:0;font-size:.95rem;color:var(--ink-2);line-height:1.45}
+.ed .go{font-family:"Courier Prime",monospace;font-size:.66rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3);margin-top:.6rem;display:block}
+.episodes{border:2px solid var(--ink);padding:1rem 1.1rem;background:var(--paper-2);margin-bottom:2rem}
+.episodes ul{margin:.5rem 0 0;padding-left:1.1rem;font-size:.97rem}
+.episodes li{margin-bottom:.25rem}
+footer{margin-top:1rem;padding:2rem 0 4rem;background:var(--paper-3)}
+.colo{font-family:"Courier Prime",monospace;font-size:.73rem;line-height:1.75;color:var(--ink-2);max-width:36rem}
+.colo strong{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media print{
+  :root,:root[data-theme="dark"]{--paper:#fff!important;--paper-2:#fff!important;--paper-3:#fff!important;
+    --ink:#000!important;--ink-2:#333!important;--ink-3:#555!important;--rule:#bbb!important;
+    --brass:#6B4D0A!important;--brass-wash:#fff!important;--pink:#A81254!important}
+  body{background:#fff;color:#000}
+  .ed{box-shadow:none}
+}
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap">
+  <span>A field manual for the decisions you make together</span>
+  <span>Issues 01&ndash;11</span>
+</div></div>
+
+<header><div class="wrap">
+  <h1><span class="the">The</span>Big Ask</h1>
+  <p class="dek">A magazine about the first big decisions parents and kids have to make together. Every issue comes in <b>two halves</b> &mdash; one written for you, one written for them.</p>
+</div></header>
+
+<main><div class="wrap">
+
+  <section class="issue">
+    <h2 class="sec">Issue No. 01 &mdash; The dog</h2>
+    <p class="sub">The long one &middot; with a podcast episode on each side</p>
+    <div class="pair">
+      <a class="ed" href="parents/no-01-so-you-want-a-dog.html">
+        <span class="who">For the parent</span>
+        <h3>So you want to get a dog</h3>
+        <p>A live cost engine that prices a dog over its whole life, an audit of who really does the six a.m. walk, scripts by age, a two&#8209;week trial, and an agreement everybody signs.</p>
+        <span class="go">Read &middot; 12&#8209;min episode inside &rarr;</span>
+      </a>
+      <a class="ed kid" href="kids/no-01-the-case-for-a-dog.html">
+        <span class="who">For the kid</span>
+        <h3>The case for a dog</h3>
+        <p>How to ask so grown&#8209;ups actually listen. What they&rsquo;re really scared of, a fourteen&#8209;morning tracker, and a builder that makes the one page you hand over.</p>
+        <span class="go">Read &middot; 6&#8209;min episode inside &rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="issue">
+    <h2 class="sec">Issues No. 02&ndash;11 &mdash; ten more asks</h2>
+    <p class="sub">A phone &middot; being online &middot; a sleepover &middot; going alone &middot; quitting &middot; home alone &middot; money &middot; a first job &middot; how they look &middot; dating</p>
+    <div class="pair">
+      <a class="ed" href="parents/no-02-11-ten-more-big-asks.html">
+        <span class="who">For the parent</span>
+        <h3>Ten more big asks</h3>
+        <p>One page each: what you&rsquo;re actually deciding, one fact worth knowing, a script, the one rule, and how you&rsquo;ll know. Filter by your kid&rsquo;s age to find tonight&rsquo;s.</p>
+        <span class="go">Read &rarr;</span>
+      </a>
+      <a class="ed kid" href="kids/no-02-11-ten-things-to-ask-for.html">
+        <span class="who">For the kid</span>
+        <h3>Ten things to ask for</h3>
+        <p>One card per ask, about sixty words each. What they&rsquo;re scared of, what to say, what not to say, and the one job that does the work.</p>
+        <span class="go">Read &rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="episodes">
+    <h2 class="sec">The episodes</h2>
+    <p class="sub">Both built into Issue No. 01, or listen straight from here</p>
+    <ul>
+      <li><a href="audio/no-01-dog-parents.m4a">For parents &mdash; <em>So you want to get a dog</em></a> &middot; 11:59 &middot; <a href="transcripts/no-01-dog-parents.txt">transcript</a></li>
+      <li><a href="audio/no-01-dog-kids.m4a">For kids &mdash; <em>How to ask for a dog</em></a> &middot; 6:33 &middot; <a href="transcripts/no-01-dog-kids.txt">transcript</a></li>
+    </ul>
+  </div>
+
+</div></main>
+
+<footer><div class="wrap">
+  <p class="colo"><strong>Made entirely by an AI.</strong> The writing, the design, the drawings and both podcast voices were produced by Claude, a model made by Anthropic. There is no human newsroom here and no byline to look up. Every page says so, because something that reads like people made it should be plain about the fact that nobody did.<br><br>
+  <strong>Not professional advice.</strong> Costs are 2026 US estimates and are labelled as such. Age bands are rough and your child is not a band. Nothing here is veterinary, medical, legal, financial or safeguarding guidance, and anything touching a child&rsquo;s safety belongs with people who know your family.<br><br>
+  <strong>Nothing you type is stored or sent.</strong> Every worksheet is local to your browser and vanishes when you close the tab. Print the pages &mdash; they are designed for it.<br><br>
+  Source, scripts and the audio pipeline: <a href="https://github.com/skyspeak/magazine">github.com/skyspeak/magazine</a></p>
+</div></footer>
+</body>
+</html>
