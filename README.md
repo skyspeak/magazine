@@ -18,10 +18,25 @@ nobody did.
 
 ## What's here
 
-| | Parents | Kids |
+**No. 01 — the dog** is the long-form issue, hand-built:
+[parents](parents/no-01-so-you-want-a-dog.html) · [kids](kids/no-01-the-case-for-a-dog.html).
+
+**Nos. 02–11** are one issue each, generated from `src/content.py`. Contents pages:
+[parents, filterable by age](parents/no-02-11-ten-more-big-asks.html) ·
+[kids](kids/no-02-11-ten-things-to-ask-for.html).
+
+| No. | Issue | Ages |
 |---|---|---|
-| **No. 01 — So you want to get a dog** | [`parents/no-01-so-you-want-a-dog.html`](parents/no-01-so-you-want-a-dog.html) | [`kids/no-01-the-case-for-a-dog.html`](kids/no-01-the-case-for-a-dog.html) |
-| **Nos. 02–11 — ten more asks** | [`parents/no-02-11-ten-more-big-asks.html`](parents/no-02-11-ten-more-big-asks.html) | [`kids/no-02-11-ten-things-to-ask-for.html`](kids/no-02-11-ten-things-to-ask-for.html) |
+| 02 | A phone | 10–13 |
+| 03 | Being online | 12–15 |
+| 04 | A sleepover | 6–10 |
+| 05 | Going somewhere alone | 8–12 |
+| 06 | Quitting | any, repeatedly |
+| 07 | Staying home alone | 9–13 |
+| 08 | Money of their own | 7–14 |
+| 09 | A first job | 13–17 |
+| 10 | How they look | 10–16 |
+| 11 | Going out with someone | 13–17 |
 
 **Issue No. 01** takes one decision apart at full length: a live cost engine that
 prices a dog over its whole life, a labour audit of an ordinary Tuesday, scripts
@@ -29,11 +44,11 @@ by age, a two-week trial protocol, a fillable job application, and a family
 agreement everybody signs. The kid's half has a fourteen-morning tracker and a
 builder that assembles a one-page case they can hand over.
 
-**Issues Nos. 02–11** are deliberately short — one page each, filterable by your
-kid's age: a phone, being online, a sleepover, going somewhere alone, quitting
-the thing, staying home alone, money of their own, a first job, changing how
-they look, and going out with someone. The kid's edition of those ten is one
-card per ask, about sixty words each.
+**Issues Nos. 02–11** are short by design — one page each, same shape every time:
+what you are actually deciding, the facts worth knowing, a script, the one rule,
+the longer version, and a live readiness checklist. Each has a companion kid
+edition of about three hundred words: what they're scared of, what to say, what
+not to say, the one job, and what to ask for instead if it's a no.
 
 `index.html` at the root is the cover: it links to all four editions and both
 episodes.
@@ -87,10 +102,42 @@ re-record, update them there too.
 
 ## Editing
 
-The HTML files are the source of truth. `src/gen_issues.py` and `src/gen_kid.py`
-hold the content for Nos. 02–11 as plain Python data and emit HTML fragments —
-useful for bulk edits or for adding an issue, but the fragment has to go back
-into the page by hand.
+Issues 02–11 are **generated**. Do not edit those HTML files by hand — they are
+build output and the next build will overwrite them.
+
+```
+src/content.py      all issue content, as plain Python data
+src/build_site.py   renders 22 pages + index.html
+src/check_site.py   static checks over everything
+assets/parents.css  the parents' edition
+assets/kids.css     the kids' edition
+assets/widgets.js   the five widgets, shared by both
+```
+
+```bash
+python3 src/build_site.py    # rebuild
+python3 src/check_site.py    # dead links, tag balance, theme-token parity
+```
+
+**To add an issue:** append a dict to `ISSUES` in `src/content.py` and rebuild.
+Both editions, the contents pages, the age filter, the previous/next pager and
+the index all pick it up. Nothing else needs touching.
+
+**The five widgets.** A page declares one with a `data-widget` attribute and a
+JSON payload; `assets/widgets.js` does the rest. Nothing is transmitted, and
+only `streak` persists — to `localStorage`, degrading quietly when unavailable.
+
+| kind | what it does |
+|---|---|
+| `checklist` | tick items, get a verdict banded by how many |
+| `chooser` | pick one of N, get the answer for that one |
+| `streak` | N-day tracker, saved on the device |
+| `dial` | a number you set, a sentence you get |
+| `sorter` | put each item in a bucket, with a right answer |
+
+Issue No. 01 is hand-built, has its CSS inline, and is deliberately untouched by
+the generator. It is the one page where the layout is bespoke enough to be worth
+the duplication.
 
 Things worth preserving if you change the CSS:
 
@@ -103,8 +150,12 @@ Things worth preserving if you change the CSS:
   tokens lose on specificity to the dark-mode rule, and printing from a dark
   browser produces a black page. These documents are meant to be printed.
 - Nothing typed into any worksheet is stored or transmitted. The only exception
-  is the kids' fourteen-morning tracker, which uses `localStorage` and degrades
-  gracefully when it is unavailable.
+  is the streak trackers, which use `localStorage` and degrade gracefully when
+  it is unavailable.
+- Widget payloads are JSON inside a single-quoted `data-w` attribute and may
+  legitimately contain `<em>`. A tag scanner that is not attribute-aware will
+  report those as stray closing tags; `src/check_site.py` strips attribute
+  values before scanning for exactly this reason.
 
 ## Deploying
 
@@ -122,9 +173,11 @@ The files in `parents/` and `kids/` are the **web** form: they stream audio from
 `audio/` and link to each other by relative path. That is right for a website
 and wrong for a Claude Artifact, which must be a single file with no siblings.
 
-`src/build_artifact.py` produces the Artifact form in `build/` (gitignored) by
-inlining the audio as a base64 data URI and re-pointing the cross-links at the
-published Artifact URLs:
+`src/build_artifact.py` produces the Artifact form in `build/` (gitignored). It
+inlines the audio as a base64 data URI, folds in the shared CSS and JS (an
+Artifact has no siblings, so a relative asset path is a dead link), re-points
+cross-links at the published Artifact URLs, and rewrites anything else to the
+live site:
 
 ```bash
 python3 src/build_artifact.py            # all four

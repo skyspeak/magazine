@@ -1,292 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Ten More Big Asks</title>
+<meta name="description" content="Issues 02-11 of The Big Ask, one page each, filterable by your kid's age.">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800;900&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap">
-<style>
-:root{
-  --paper:#E9E7DE; --paper-2:#F3F1EA; --paper-3:#DEDBCF;
-  --ink:#191B1E; --ink-2:#5B5E58; --ink-3:#83867D;
-  --rule:#C6C2B3; --rule-hard:#191B1E;
-  --brass:#9A6E11; --brass-soft:#C9A44A; --brass-wash:#E3D6B4;
-  --stamp:#A3382A; --field:#FBFAF5; --shadow:rgba(25,27,30,.13);
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --paper:#15171B; --paper-2:#1D2025; --paper-3:#101215;
-    --ink:#E7E4D9; --ink-2:#9DA097; --ink-3:#7A7D75;
-    --rule:#343943; --rule-hard:#5C6270;
-    --brass:#CFA13A; --brass-soft:#8E6E22; --brass-wash:#3A3117;
-    --stamp:#DE6E58; --field:#242830; --shadow:rgba(0,0,0,.5);
-  }
-}
-:root[data-theme="dark"]{
-  --paper:#15171B; --paper-2:#1D2025; --paper-3:#101215;
-  --ink:#E7E4D9; --ink-2:#9DA097; --ink-3:#7A7D75;
-  --rule:#343943; --rule-hard:#5C6270;
-  --brass:#CFA13A; --brass-soft:#8E6E22; --brass-wash:#3A3117;
-  --stamp:#DE6E58; --field:#242830; --shadow:rgba(0,0,0,.5);
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);overflow-wrap:break-word;
-  font-family:"Source Serif 4",Charter,Georgia,serif;font-size:1.04rem;line-height:1.58;-webkit-font-smoothing:antialiased}
-.display{font-family:"Big Shoulders Display","Oswald","Arial Narrow",Impact,sans-serif}
-.mono{font-family:"Courier Prime","Courier New",monospace}
-.wrap{max-width:60rem;margin:0 auto;padding:0 1.4rem}
-p{margin:0 0 .7rem}
-a{color:var(--ink);text-decoration-color:var(--brass);text-underline-offset:3px}
-:is(a,button,input,select,summary,[tabindex]):focus-visible{outline:2px solid var(--brass);outline-offset:3px}
-
-/* masthead */
-.top{border-bottom:1px solid var(--rule-hard);padding:.5rem 0;
-  font-family:"Courier Prime",monospace;font-size:.66rem;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--ink-2)}
-.top .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-header.hd{padding:2.6rem 0 1.8rem;border-bottom:3px solid var(--rule-hard)}
-h1.mast{font-family:"Big Shoulders Display","Oswald",Impact,sans-serif;font-weight:900;
-  text-transform:uppercase;line-height:.86;font-size:clamp(2.6rem,9vw,5.6rem);margin:0;letter-spacing:-.01em}
-h1.mast em{font-style:normal;color:var(--brass)}
-.dek{max-width:36rem;margin-top:.9rem;font-size:1.1rem;color:var(--ink-2)}
-
-/* age filter */
-.filter{display:flex;flex-wrap:wrap;gap:.9rem 1.4rem;align-items:center;
-  border:2px solid var(--rule-hard);background:var(--paper-2);padding:.8rem 1rem;margin:1.6rem 0 0}
-.filter label{font-family:"Courier Prime",monospace;font-size:.66rem;letter-spacing:.13em;
-  text-transform:uppercase;color:var(--ink-3)}
-.filter input[type=range]{accent-color:var(--brass);width:min(18rem,55vw)}
-.filter .age{font-family:"Big Shoulders Display","Oswald",Impact,sans-serif;font-weight:800;
-  font-size:2rem;line-height:1;font-variant-numeric:tabular-nums;min-width:2.4ch;display:inline-block}
-.filter .msg{font-family:"Courier Prime",monospace;font-size:.72rem;color:var(--ink-2);flex:1 1 12rem}
-.filter button{font-family:"Courier Prime",monospace;font-size:.68rem;letter-spacing:.08em;
-  text-transform:uppercase;background:none;border:1px solid var(--rule-hard);color:var(--ink);
-  padding:.25rem .6rem;cursor:pointer}
-.filter button:hover{background:var(--brass-wash)}
-
-/* contents */
-.toc{display:flex;flex-wrap:wrap;gap:1px;
-  background:var(--rule);border:1px solid var(--rule);margin:1.6rem 0 0}
-.toc a{flex:1 1 13rem;background:var(--paper-2);padding:.55rem .7rem;text-decoration:none;
-  font-family:"Courier Prime",monospace;font-size:.74rem;line-height:1.35;color:var(--ink)}
-.toc a:hover{background:var(--brass-wash)}
-.toc a b{color:var(--brass);display:block;font-size:.64rem;letter-spacing:.1em}
-.toc a.dim{opacity:.34}
-
-/* issue */
-.issue{border-bottom:1px solid var(--rule);padding:2.4rem 0;transition:opacity .2s}
-.issue.dim{opacity:.3}
-.ihead{display:flex;align-items:stretch;border:2px solid var(--rule-hard);margin-bottom:1.2rem}
-.ino{background:var(--ink);color:var(--paper);display:flex;align-items:center;padding:.4rem .8rem;
-  font-family:"Courier Prime",monospace;font-size:.7rem;letter-spacing:.1em;white-space:nowrap}
-.ittl{padding:.4rem .85rem;flex:1;min-width:0}
-.iage{font-family:"Courier Prime",monospace;font-size:.63rem;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--ink-3)}
-.ittl h2{font-family:"Big Shoulders Display","Oswald",Impact,sans-serif;font-weight:800;
-  text-transform:uppercase;font-size:clamp(1.6rem,4.2vw,2.5rem);line-height:.98;margin:.05rem 0 0;text-wrap:balance}
-.thesis{font-size:1.16rem;max-width:38rem;margin-bottom:1.2rem}
-.thesis b{color:var(--brass)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1.1rem}
-.box{border:1px solid var(--rule-hard);background:var(--paper-2);padding:.85rem .95rem}
-.box h3{font-family:"Courier Prime",monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--brass);margin:0 0 .4rem;font-weight:700}
-.box p{font-size:.97rem;margin:0 0 .5rem}
-.box p:last-child{margin-bottom:0}
-.box.rule-box{border:2px solid var(--stamp)}
-.box.rule-box h3{color:var(--stamp)}
-.say{font-style:italic}
-.say::before{content:"\201C"}.say::after{content:"\201D"}
-.no{color:var(--ink-2)}
-ul.ck{margin:0;padding-left:1.1rem;font-size:.97rem}
-ul.ck li{margin-bottom:.3rem}
-.foot-line{font-family:"Courier Prime",monospace;font-size:.64rem;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--ink-3);margin-top:1rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-footer{padding:2.6rem 0 4rem;background:var(--paper-3)}
-.colo{font-family:"Courier Prime",monospace;font-size:.72rem;line-height:1.7;color:var(--ink-2);max-width:36rem}
-.colo strong{color:var(--ink)}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-@media print{
-  :root,:root[data-theme="dark"]{
-    --paper:#fff !important; --paper-2:#fff !important; --paper-3:#fff !important; --field:#fff !important;
-    --ink:#000 !important; --ink-2:#333 !important; --ink-3:#555 !important;
-    --rule:#bbb !important; --rule-hard:#000 !important;
-    --brass:#6B4D0A !important; --brass-soft:#8A6A14 !important; --brass-wash:#fff !important;
-    --stamp:#8A2F22 !important; --shadow:transparent !important;
-  }
-  body{background:#fff;color:#000;font-size:10pt}
-  .filter{display:none}
-  .issue{page-break-inside:avoid;opacity:1 !important}
-  .toc a.dim{opacity:1}
-  .ino{background:#000 !important;color:#fff !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  a{color:#000;text-decoration:none}
-}
-</style>
-
+<link rel="stylesheet" href="../assets/parents.css">
+</head>
+<body>
 <div class="top"><div class="wrap">
-  <span>The Big Ask &middot; A field manual for the decisions you make together</span>
+  <span><a href="../index.html">The Big Ask</a> &middot; A field manual for the decisions you make together</span>
   <span>Issues 02&ndash;11</span>
 </div></div>
 
 <header class="hd"><div class="wrap">
-  <h1 class="mast display">Ten more<br><em>big asks</em></h1>
-  <p class="dek">Issue No. 01 took one decision apart at full length. These are the ten that follow it &mdash; each on a single page, because you will be reading them the night before, not the month before.</p>
-  <p class="dek" style="font-size:1rem">Same shape every time: what you are really deciding, one fact worth knowing, a script, the one rule, and how you will know. <a href="no-01-so-you-want-a-dog.html">No. 01, the dog</a>, has the long version of the method. <a href="../kids/no-02-11-ten-things-to-ask-for.html">The kid&rsquo;s edition of these ten</a> is much shorter and is written for them.</p>
-
+  <h1 class="ask display">Ten more<br><em>big asks</em></h1>
+  <p class="thesis">Issue No. 01 took one decision apart at full length. These are the ten that follow it &mdash; each its own issue, same shape every time, so you can find the thing you need the night before you need it.</p>
   <div class="filter">
     <label for="age">Whose house is this?</label>
-    <input type="range" id="age" min="5" max="18" value="10" aria-describedby="agemsg">
-    <span class="age display mono" id="agev">10</span>
-    <span class="msg" id="agemsg"></span>
+    <input type="range" id="age" min="5" max="18" value="10">
+    <span class="age display" id="agev">10</span>
+    <span class="msg mono" id="agemsg"></span>
     <button type="button" id="showall">Show all ten</button>
   </div>
 </div></header>
 
 <main class="wrap">
-<div class="toc" id="toc"><a href="#i02" data-lo="10" data-hi="13"><b>No. 02</b>A phone</a><a href="#i03" data-lo="12" data-hi="15"><b>No. 03</b>Being online</a><a href="#i04" data-lo="6" data-hi="10"><b>No. 04</b>A sleepover</a><a href="#i05" data-lo="8" data-hi="12"><b>No. 05</b>Going somewhere alone</a><a href="#i06" data-lo="7" data-hi="16"><b>No. 06</b>Quitting the thing</a><a href="#i07" data-lo="9" data-hi="13"><b>No. 07</b>Staying home alone</a><a href="#i08" data-lo="7" data-hi="14"><b>No. 08</b>Money of their own</a><a href="#i09" data-lo="13" data-hi="17"><b>No. 09</b>A first job</a><a href="#i10" data-lo="10" data-hi="16"><b>No. 10</b>Changing how they look</a><a href="#i11" data-lo="13" data-hi="17"><b>No. 11</b>Going out with someone</a></div>
-
-<article class="issue" id="i02" data-lo="10" data-hi="13">
-  <div class="ihead">
-    <div class="ino mono">No. 02</div>
-    <div class="ittl"><div class="iage">Usually 10&ndash;13</div><h2>So you want a phone</h2></div>
-  </div>
-  <p class="thesis">A phone is not one decision, it is <b>four</b>: a device, a phone number, an open internet, and an app store. Most families hand over all four at once because they arrive in the same box. You can grant them separately, and separating them is the whole game.</p>
-  <div class="grid"><div class="box"><h3>What you are actually deciding</h3><p>Not <em>are they responsible</em>. It is: are they ready to be reachable by everybody, all the time, with no adult in the room?</p><ul class="ck"><li>Which of the four you are actually giving</li><li>Where it sleeps</li><li>Who is allowed to contact them</li></ul></div><div class="box"><h3>The fact worth knowing</h3><p>Whatever rule you set on day one is the rule. Adding a restriction six months later reads as a punishment for something; setting it at the start is just how phones work in this house.</p></div><div class="box"><h3>Say this, not that</h3><p><span class="say">You can have a phone. It is for calling and texting us and your friends. The internet and apps are a separate conversation, and we will have it in six months.</span></p><p class="no">Not: <span class="say">If your grades slip I am taking it away.</span> &mdash; The moment the phone is the currency for everything else, every conversation in your house becomes a phone conversation.</p></div><div class="box rule-box"><h3>The one rule</h3><p><strong>The phone sleeps outside the bedroom. Everyone&rsquo;s does, including yours.</strong></p><p>This is the single rule that is almost impossible to introduce later and almost frictionless to start with.</p></div><div class="box"><h3>Ready when</h3><ul class="ck"><li>They can be bored for ten minutes without reaching for something</li><li>They have told you about something that went wrong, unprompted, at least once</li><li>They can hand it over when asked without a scene</li></ul><p style="margin-top:.6rem"><strong>If it is not yet:</strong> Start with a phone that only calls and texts, and put the date for the next conversation in the calendar.</p></div></div>
-  
-  <div class="foot-line"><span>The Big Ask &middot; No. 02</span><span>Decide it out loud, and decide it with them in the room</span></div>
-</article>
-
-<article class="issue" id="i03" data-lo="12" data-hi="15">
-  <div class="ihead">
-    <div class="ino mono">No. 03</div>
-    <div class="ittl"><div class="iage">Usually 12&ndash;15</div><h2>So you want being online</h2></div>
-  </div>
-  <p class="thesis">This is not a screen&#8209;time decision, it is an <b>audience</b> decision. You are deciding whether your child gets a public &mdash; a room of people they cannot see, that keeps a copy of everything.</p>
-  <div class="grid"><div class="box"><h3>What you are actually deciding</h3><p>Not <em>how long are they on it</em>. It is: who can see them, who can message them, and what happens to it afterwards?</p><ul class="ck"><li>Public or private</li><li>Who can send them a message</li><li>Whether you are in the audience</li></ul></div><div class="box"><h3>The fact worth knowing</h3><p>Thirteen is the platforms&rsquo; own minimum, and it is a legal floor rather than a recommendation. Nothing posted is ever really retrievable, including the things deleted nine seconds later.</p></div><div class="box"><h3>Say this, not that</h3><p><span class="say">One condition. I get to see it. Not to police you &mdash; because you are thirteen and I am not sending you into a room full of adults without knowing what the room is like.</span></p><p class="no">Not: <span class="say">Give me your phone. Now.</span> &mdash; Surprise inspections buy you one afternoon of information and cost you every future disclosure. Visibility agreed in advance costs nothing.</p></div><div class="box rule-box"><h3>The one rule</h3><p><strong>The first account is private, and you are in the audience. Renegotiate on a named date, not on a good mood.</strong></p><p>Private-by-default is easy on day one and a humiliation to impose in month six.</p></div><div class="box"><h3>Ready when</h3><ul class="ck"><li>They can describe what they would do if a stranger messaged them</li><li>They have told you about something upsetting online before you found it yourself</li><li>They understand that deleting is not undoing</li></ul><p style="margin-top:.6rem"><strong>If it is not yet:</strong> A group chat with people you both know, first. It is the same skills with a knowable room.</p></div></div>
-  
-  <div class="foot-line"><span>The Big Ask &middot; No. 03</span><span>Decide it out loud, and decide it with them in the room</span></div>
-</article>
-
-<article class="issue" id="i04" data-lo="6" data-hi="10">
-  <div class="ihead">
-    <div class="ino mono">No. 04</div>
-    <div class="ittl"><div class="iage">Usually 6&ndash;10</div><h2>So you want a sleepover</h2></div>
-  </div>
-  <p class="thesis">The question is almost never whether your child is ready. It is whether <b>you know the house</b> &mdash; and whether your kid can get out of it at one in the morning without feeling like a failure.</p>
-  <div class="grid"><div class="box"><h3>What you are actually deciding</h3><p>Not <em>are they old enough</em>. It is: do I know this home, and does my kid have a working exit?</p><ul class="ck"><li>Whose house, and which adults are there all night</li><li>Who else is staying</li><li>What the pickup plan is</li></ul></div><div class="box"><h3>The fact worth knowing</h3><p>The failure mode is not drama. It is a quiet child at 1 a.m. who has decided that asking to go home would be embarrassing, and who says nothing for five hours.</p></div><div class="box"><h3>Say this, not that</h3><p><span class="say">Two things and then yes. I am going to ring their mum and ask a few boring questions. And you can come home at any hour, no embarrassment, no questions until morning. That is not failing. That is the deal.</span></p><p class="no">Not: <span class="say">You&rsquo;ll be fine!</span> &mdash; Reassurance sounds kind and quietly forecloses the sentence you most need them to be able to say, which is <em>I am not fine</em>.</p></div><div class="box rule-box"><h3>The one rule</h3><p><strong>A code word, and a no&#8209;questions pickup. One text, you drive, nobody discusses it until the morning.</strong></p><p>A child will use an escape hatch they are certain costs them nothing. They will not use one they have to argue for.</p></div><div class="box"><h3>Ready when</h3><ul class="ck"><li>They can phone you themselves</li><li>They have done a late evening at the house and come home at nine</li><li>They have said &lsquo;I don&rsquo;t like this&rsquo; to an adult who is not you</li></ul><p style="margin-top:.6rem"><strong>If it is not yet:</strong> A late&#8209;over. All of the party, collected at nine, and nobody has to be brave about it.</p></div></div>
-  <div class="box" style="margin-top:1.1rem"><strong>The boring questions, for the other parent:</strong> who is home overnight, who else is staying, what the screen and film rules are, where everyone sleeps, and &mdash; asked plainly, the way you would ask about a swimming pool &mdash; whether there are guns in the house and how they are stored.</div>
-  <div class="foot-line"><span>The Big Ask &middot; No. 04</span><span>Decide it out loud, and decide it with them in the room</span></div>
-</article>
-
-<article class="issue" id="i05" data-lo="8" data-hi="12">
-  <div class="ihead">
-    <div class="ino mono">No. 05</div>
-    <div class="ittl"><div class="iage">Usually 8&ndash;12</div><h2>So you want going somewhere alone</h2></div>
-  </div>
-  <p class="thesis">Independence is not a switch you flip at a certain age. It is a <b>distance</b>, and you extend it. The question is never the world in general &mdash; it is this route, at this hour, with this child.</p>
-  <div class="grid"><div class="box"><h3>What you are actually deciding</h3><p>Not <em>is the world safe</em>. It is: does my kid have the judgment for this specific journey, and do they know what to do when it goes wrong?</p><ul class="ck"><li>Which route, at what time</li><li>What happens when plan A fails</li><li>How they tell you they arrived</li></ul></div><div class="box"><h3>The fact worth knowing</h3><p>The risk on a walk to school is overwhelmingly traffic, not strangers. So rehearse the road, not the fear &mdash; a long warning about strangers reliably raises anxiety without raising a single skill.</p></div><div class="box"><h3>Say this, not that</h3><p><span class="say">We are going to walk it together three times. Then you walk it while I wait at the other end. Then you do it on your own. And before any of that, tell me what you would do if the shop is shut.</span></p><p class="no">Not: <span class="say">Nothing is going to happen.</span> &mdash; It is a promise you cannot keep, and it teaches them that surprises are outside the plan rather than part of it.</p></div><div class="box rule-box"><h3>The one rule</h3><p><strong>Name the failure plan out loud before the first solo trip. Shop shut, friend not there, phone dead, feels wrong.</strong></p><p>Confidence comes from having somewhere to go when the plan breaks, not from being told it will not.</p></div><div class="box"><h3>Ready when</h3><ul class="ck"><li>They cross the worst road correctly without being reminded</li><li>They know an address and a phone number by heart</li><li>They have solved one small problem on their own and told you about it</li></ul><p style="margin-top:.6rem"><strong>If it is not yet:</strong> Shorten the leg. Half the route, or the same route at a busier hour, is a real yes rather than a soft no.</p></div></div>
-  
-  <div class="foot-line"><span>The Big Ask &middot; No. 05</span><span>Decide it out loud, and decide it with them in the room</span></div>
-</article>
-
-<article class="issue" id="i06" data-lo="7" data-hi="16">
-  <div class="ihead">
-    <div class="ino mono">No. 06</div>
-    <div class="ittl"><div class="iage">Any age, repeatedly</div><h2>So you want quitting the thing</h2></div>
-  </div>
-  <p class="thesis">The most useful question is not whether to let them quit. It is whether they are quitting the activity or <b>quitting a bad week</b> &mdash; and those need opposite answers.</p>
-  <div class="grid"><div class="box"><h3>What you are actually deciding</h3><p>Not <em>do we allow quitting</em>. It is: which part do they actually hate &mdash; the thing, the person, or the practising? Those are three different problems with three different fixes.</p><ul class="ck"><li>Quit, change teacher or team, or change the amount</li><li>When the exit happens</li><li>What they owe the other people involved</li></ul></div><div class="box"><h3>The fact worth knowing</h3><p>The urge to quit usually peaks just before competence, not at the start. The plateau &mdash; where effort stops producing visible improvement &mdash; is the most common place a child asks to stop.</p></div><div class="box"><h3>Say this, not that</h3><p><span class="say">You can quit. Not today &mdash; at the end of term, so you are leaving from a decision instead of a bad Tuesday. And I want to know which part you hate, because if it is the teacher we have a much easier problem.</span></p><p class="no">Not: <span class="say">We don&rsquo;t quit things in this family.</span> &mdash; It teaches that stopping anything is a defect of character, which is exactly the belief that keeps a twenty&#8209;six&#8209;year&#8209;old in a job they hate.</p></div><div class="box rule-box"><h3>The one rule</h3><p><strong>Quit at a boundary, not in a bad moment &mdash; and finish what other people are counting on.</strong></p><p>The lesson worth keeping is not persistence. It is that you exit cleanly and you do not leave a team short.</p></div><div class="box"><h3>Ready when</h3><ul class="ck"><li>They can name the specific part they hate</li><li>They have tried one change &mdash; different teacher, different level, less of it</li><li>They have said it calmly, more than once, across several weeks</li></ul><p style="margin-top:.6rem"><strong>If it is not yet:</strong> Three more weeks with one thing changed, and a promise that you will honour whatever they say at the end of it. Then honour it.</p></div></div>
-  
-  <div class="foot-line"><span>The Big Ask &middot; No. 06</span><span>Decide it out loud, and decide it with them in the room</span></div>
-</article>
-
-<article class="issue" id="i07" data-lo="9" data-hi="13">
-  <div class="ihead">
-    <div class="ino mono">No. 07</div>
-    <div class="ittl"><div class="iage">Usually 9&ndash;13</div><h2>So you want staying home alone</h2></div>
-  </div>
-  <p class="thesis">You are not really assessing whether they can be trusted alone. You are assessing <b>what they do when something goes wrong</b> &mdash; and the things that go wrong are far more boring than the ones you are picturing.</p>
-  <div class="grid"><div class="box"><h3>What you are actually deciding</h3><p>Not <em>are they mature enough</em>. It is: do they know what to do about the doorbell, the smoke alarm, the locked door, and not being able to reach me?</p><ul class="ck"><li>How long, and how often</li><li>Whether a sibling counts as company or as a second job</li><li>What is off limits &mdash; oven, bath, front door</li></ul></div><div class="box"><h3>The fact worth knowing</h3><p>First&#8209;time&#8209;alone problems are almost always mundane: a delivery, a locked door, a burnt slice of toast setting off an alarm, a sibling fight. Rehearse those four and you have covered most of it.</p></div><div class="box"><h3>Say this, not that</h3><p><span class="say">Twenty minutes while I get milk. Before I go: tell me what you do if someone knocks, if you get locked out, and if you ring me and I do not pick up.</span></p><p class="no">Not: <span class="say">Just don&rsquo;t open the door to anyone.</span> &mdash; A single rule with no plan behind it. They need a script for the four boring emergencies, not one prohibition.</p></div><div class="box rule-box"><h3>The one rule</h3><p><strong>Start at twenty minutes, and come back exactly when you said you would.</strong></p><p>The first reliability being tested here is yours. A parent who is late by an hour teaches the house that stated times are approximate.</p></div><div class="box"><h3>Ready when</h3><ul class="ck"><li>They can be alone and bored without ringing you five times</li><li>They follow a rule you are not there to enforce</li><li>They can call an adult who is not you</li></ul><p style="margin-top:.6rem"><strong>If it is not yet:</strong> Alone in the house while you are in the garden, then while you are at the end of the street. Ladder it.</p></div></div>
-  
-  <div class="foot-line"><span>The Big Ask &middot; No. 07</span><span>Decide it out loud, and decide it with them in the room</span></div>
-</article>
-
-<article class="issue" id="i08" data-lo="7" data-hi="14">
-  <div class="ihead">
-    <div class="ino mono">No. 08</div>
-    <div class="ittl"><div class="iage">Usually 7&ndash;14</div><h2>So you want money of their own</h2></div>
-  </div>
-  <p class="thesis">The decision is not how much. It is whether you are giving them money, or giving them <b>the right to make a bad purchase</b> &mdash; because only the second one teaches anything.</p>
-  <div class="grid"><div class="box"><h3>What you are actually deciding</h3><p>Not <em>what is the right amount</em>. It is: am I actually going to let them lose it?</p><ul class="ck"><li>The amount, and how often</li><li>Whether it is tied to chores</li><li>Whether you get a veto</li></ul></div><div class="box"><h3>The fact worth knowing</h3><p>Money only teaches when it can be lost. An allowance that gets topped up after a bad decision is a lesson that has been deleted, at full price.</p></div><div class="box"><h3>Say this, not that</h3><p><span class="say">It is yours. I will tell you once if I think something is a bad idea, and then I will stop. And I am not going to replace it. That is the entire point of it being yours.</span></p><p class="no">Not: <span class="say">Everything is paid, per chore.</span> &mdash; Pricing every job puts a market rate on things that should be free, and you will find yourself negotiating a fee for a child to carry their own plate.</p></div><div class="box rule-box"><h3>The one rule</h3><p><strong>Let them buy the rubbish thing.</strong></p><p>A twenty&#8209;pound regret at nine is the cheapest financial education that exists anywhere, and it does not go on a credit record.</p></div><div class="box"><h3>Ready when</h3><ul class="ck"><li>They can wait a week for something they want</li><li>They can tell you roughly what things cost</li><li>They have saved for one thing all the way to the end</li></ul><p style="margin-top:.6rem"><strong>If it is not yet:</strong> A smaller amount, weekly, in cash, where they can physically watch it leave.</p></div></div>
-  
-  <div class="foot-line"><span>The Big Ask &middot; No. 08</span><span>Decide it out loud, and decide it with them in the room</span></div>
-</article>
-
-<article class="issue" id="i09" data-lo="13" data-hi="17">
-  <div class="ihead">
-    <div class="ino mono">No. 09</div>
-    <div class="ittl"><div class="iage">Usually 13&ndash;17</div><h2>So you want a first job</h2></div>
-  </div>
-  <p class="thesis">The money is the least interesting part. The real curriculum is <b>having a boss who is not a parent</b> &mdash; someone who corrects them, and whom they have to say no to.</p>
-  <div class="grid"><div class="box"><h3>What you are actually deciding</h3><p>Not <em>do they need the money</em>. It is: whose time is it now, and what happens the first time work and school collide?</p><ul class="ck"><li>An hours cap, in writing</li><li>The school&#8209;night rule</li><li>What happens to the money</li></ul></div><div class="box"><h3>The fact worth knowing</h3><p>School performance generally holds up to somewhere around ten to fifteen hours a week and starts to slide after that. Agree the cap before the first shift, not after the first bad report.</p></div><div class="box"><h3>Say this, not that</h3><p><span class="say">Yes. The cap is twelve hours, nothing after nine on a school night, and we look at it again in a month. What you earn is yours &mdash; I would like some of it to go somewhere it can sit.</span></p><p class="no">Not: <span class="say">I&rsquo;ll ring your manager and sort the rota.</span> &mdash; You have just removed the only part of the job that was going to teach them something.</p></div><div class="box rule-box"><h3>The one rule</h3><p><strong>They make the phone calls. Including the awkward one where they cannot work Saturday.</strong></p><p>Asking an adult who is not related to you for something, out loud, is the skill. Everything else is logistics.</p></div><div class="box"><h3>Ready when</h3><ul class="ck"><li>They can wake themselves up</li><li>They can be corrected without it ruining the day</li><li>They can turn down a shift without you in the room</li></ul><p style="margin-top:.6rem"><strong>If it is not yet:</strong> One&#8209;off paid work first &mdash; babysitting, a neighbour&rsquo;s garden, a weekend of something. Same lesson, no rota.</p></div></div>
-  
-  <div class="foot-line"><span>The Big Ask &middot; No. 09</span><span>Decide it out loud, and decide it with them in the room</span></div>
-</article>
-
-<article class="issue" id="i10" data-lo="10" data-hi="16">
-  <div class="ihead">
-    <div class="ino mono">No. 10</div>
-    <div class="ittl"><div class="iage">Usually 10&ndash;16</div><h2>So you want changing how they look</h2></div>
-  </div>
-  <p class="thesis">Sort every single request onto one axis and most of the argument disappears: <b>grows back, washes out, or does not.</b> Hair grows. Dye fades. Most holes close. Tattoos do not.</p>
-  <div class="grid"><div class="box"><h3>What you are actually deciding</h3><p>Not <em>do I like it</em>. It is: is this reversible, and if it is, why am I in the conversation at all?</p><ul class="ck"><li>Which column it falls in</li><li>Any school or uniform rule that actually exists</li><li>Who pays</li></ul></div><div class="box"><h3>The fact worth knowing</h3><p>Almost every fight in this category is about a reversible thing. Parents spend their authority on hair colour and then have none left for the permanent list.</p></div><div class="box"><h3>Say this, not that</h3><p><span class="say">My rule is simple. If it grows back or washes out, it is your call. If it does not, we wait until you are sixteen &mdash; and then it is still your call.</span></p><p class="no">Not: <span class="say">What will your grandmother say?</span> &mdash; It moves the decision from their body to other people&rsquo;s opinions, and it converts a small aesthetic choice into a fight about control, which they will win eventually anyway.</p></div><div class="box rule-box"><h3>The one rule</h3><p><strong>Reversible is theirs. Save your no for the permanent list.</strong></p><p>You get a limited number of vetoes. Spending one on green hair is a poor allocation.</p></div><div class="box"><h3>Ready when</h3><ul class="ck"><li>It grows back or washes out &mdash; in which case say yes and move on</li><li>There is no actual school rule against it, only an assumption</li><li>They have wanted it for longer than a fortnight</li></ul><p style="margin-top:.6rem"><strong>If it is not yet:</strong> For permanent things: a date, not a lecture. And say plainly that the answer at that date is very likely yes.</p></div></div>
-  
-  <div class="foot-line"><span>The Big Ask &middot; No. 10</span><span>Decide it out loud, and decide it with them in the room</span></div>
-</article>
-
-<article class="issue" id="i11" data-lo="13" data-hi="17">
-  <div class="ihead">
-    <div class="ino mono">No. 11</div>
-    <div class="ittl"><div class="iage">Usually 13&ndash;17</div><h2>So you want going out with someone</h2></div>
-  </div>
-  <p class="thesis">This one arrives whether or not you decided anything. So the real decision is not permission. It is whether they will <b>tell you anything</b> once it has started.</p>
-  <div class="grid"><div class="box"><h3>What you are actually deciding</h3><p>Not <em>should I allow this</em>. It is: am I someone they can report to without a scene?</p><ul class="ck"><li>What &lsquo;going out&rsquo; is allowed to mean right now, specifically</li><li>Where, and with how many other people around</li><li>What you actually need to know</li></ul></div><div class="box"><h3>The fact worth knowing</h3><p>The information channel is worth more than any rule you can set. Children who expect a calm reaction tell their parents things. Children who expect a scene stop reporting, and you find out much later.</p></div><div class="box"><h3>Say this, not that</h3><p><span class="say">I would like to meet them. Not to interrogate anybody &mdash; I just want a face to go with the name. And I promise not to make it weird.</span></p><p class="no">Not: <span class="say">Ooooh, is this your <em>girlfriend</em>?</span> &mdash; Teasing at fourteen is cheap and it closes the channel for years. It is the single most expensive joke available to a parent.</p></div><div class="box rule-box"><h3>The one rule</h3><p><strong>Stay unshockable. React in the morning, not in the moment.</strong></p><p>Your face in the first four seconds decides whether they tell you the next thing.</p></div><div class="box"><h3>Ready when</h3><ul class="ck"><li>This section does not really apply &mdash; it is happening</li><li>You can hear something surprising without changing your expression</li><li>They have seen you handle bad news calmly before</li></ul><p style="margin-top:.6rem"><strong>If it is not yet:</strong> Be specific rather than vague: what is allowed now, what is allowed at sixteen, and when you will talk about it again.</p></div></div>
-  
-  <div class="foot-line"><span>The Big Ask &middot; No. 11</span><span>Decide it out loud, and decide it with them in the room</span></div>
-</article>
+  <div class="toc-list" id="toc">
+    <a class="toc-row" href="no-02-a-phone.html" data-lo="10" data-hi="13">
+      <span class="n mono">No. 02</span>
+      <span class="t"><b>So you want a phone</b><em>Usually 10&ndash;13</em></span>
+      <span class="d">are they responsible enough.</span>
+    </a>
+    <a class="toc-row" href="no-03-being-online.html" data-lo="12" data-hi="15">
+      <span class="n mono">No. 03</span>
+      <span class="t"><b>So you want to be online</b><em>Usually 12&ndash;15</em></span>
+      <span class="d">how long are they on it.</span>
+    </a>
+    <a class="toc-row" href="no-04-a-sleepover.html" data-lo="6" data-hi="10">
+      <span class="n mono">No. 04</span>
+      <span class="t"><b>So you want a sleepover</b><em>Usually 6&ndash;10</em></span>
+      <span class="d">are they old enough.</span>
+    </a>
+    <a class="toc-row" href="no-05-going-somewhere-alone.html" data-lo="8" data-hi="12">
+      <span class="n mono">No. 05</span>
+      <span class="t"><b>So you want to go on your own</b><em>Usually 8&ndash;12</em></span>
+      <span class="d">is the world safe.</span>
+    </a>
+    <a class="toc-row" href="no-06-quitting.html" data-lo="7" data-hi="16">
+      <span class="n mono">No. 06</span>
+      <span class="t"><b>So you want to quit</b><em>Any age, repeatedly</em></span>
+      <span class="d">do we allow quitting.</span>
+    </a>
+    <a class="toc-row" href="no-07-staying-home-alone.html" data-lo="9" data-hi="13">
+      <span class="n mono">No. 07</span>
+      <span class="t"><b>So you want to stay home alone</b><em>Usually 9&ndash;13</em></span>
+      <span class="d">are they mature enough.</span>
+    </a>
+    <a class="toc-row" href="no-08-money-of-their-own.html" data-lo="7" data-hi="14">
+      <span class="n mono">No. 08</span>
+      <span class="t"><b>So you want your own money</b><em>Usually 7&ndash;14</em></span>
+      <span class="d">what is the right amount.</span>
+    </a>
+    <a class="toc-row" href="no-09-a-first-job.html" data-lo="13" data-hi="17">
+      <span class="n mono">No. 09</span>
+      <span class="t"><b>So you want a job</b><em>Usually 13&ndash;17</em></span>
+      <span class="d">do they need the money.</span>
+    </a>
+    <a class="toc-row" href="no-10-how-they-look.html" data-lo="10" data-hi="16">
+      <span class="n mono">No. 10</span>
+      <span class="t"><b>So you want to change how you look</b><em>Usually 10&ndash;16</em></span>
+      <span class="d">do I like it.</span>
+    </a>
+    <a class="toc-row" href="no-11-going-out-with-someone.html" data-lo="13" data-hi="17">
+      <span class="n mono">No. 11</span>
+      <span class="t"><b>So you want to go out with someone</b><em>Usually 13&ndash;17</em></span>
+      <span class="d">should I allow this.</span>
+    </a></div>
+  <div class="crossref"><span class="k">The kid&rsquo;s edition</span>
+    <p style="margin:0">Every one of these has a companion written to your child rather than about them &mdash;
+    one card each, about sixty words. <a href="../kids/no-02-11-ten-things-to-ask-for.html">Ten things to ask for</a>.</p></div>
 </main>
 
-<footer><div class="wrap">
-  <p class="colo"><strong>The Big Ask, Issues No. 02&ndash;11.</strong><br>
-  Written and designed by Claude, an AI made by Anthropic. No human newsroom, no byline to look up.<br><br>
-  <strong>Not advice, exactly.</strong> These are conversation structures, not rules, and they are not medical, legal, psychological or safeguarding guidance. Ages are rough bands and your child is not a band. Anything touching a child&rsquo;s safety &mdash; online contact, a home you do not know, a relationship that worries you &mdash; is a conversation for people who know your family, not a magazine.<br><br>
-  <strong>The method, in one line:</strong> decide it out loud, decide it with them in the room, and if the answer is not yet, bring a reason and a date.</p>
-</div></footer>
-
+<footer><div class="wrap"><p class="colo"><strong>The Big Ask.</strong> Written and designed by Claude, an AI made by Anthropic. There is no human newsroom here and no byline to look up.<br><br><strong>Not professional advice.</strong> These are conversation structures, not rules. Nothing here is medical, legal, psychological or safeguarding guidance. Age bands are rough and your child is not a band. Anything touching a child's safety belongs with people who know your family.<br><br><strong>Nothing you tick is stored or sent.</strong> Everything on this page is local to your browser.<br><br>The method, in one line: decide it out loud, decide it with them in the room, and if the answer is not yet, bring a reason and a date.</p></div></footer>
+<script src="../assets/widgets.js" defer></script>
 <script>
-(function(){
-  "use strict";
-  var $=function(id){return document.getElementById(id);};
-  var slider=$("age"), out=$("agev"), msg=$("agemsg");
-  var issues=[].slice.call(document.querySelectorAll(".issue"));
-  var links=[].slice.call(document.querySelectorAll("#toc a"));
-  var all=false;
-
-  function apply(){
-    var v=parseInt(slider.value,10);
-    out.textContent=v;
-    var live=0;
-    function mark(el){
-      var lo=+el.dataset.lo, hi=+el.dataset.hi;
-      var on=all||(v>=lo&&v<=hi);
-      el.classList.toggle("dim",!on);
-      return on;
-    }
-    issues.forEach(function(el){ if(mark(el)) live++; });
-    links.forEach(mark);
-    if(all) msg.textContent="Showing all ten.";
-    else if(live===0) msg.textContent="Nothing lands squarely at "+v+". The nearest ones are still worth reading early.";
-    else msg.textContent=live+(live===1?" issue is":" issues are")+" live at "+v+". The rest are dimmed, not gone.";
-  }
-  slider.addEventListener("input",function(){ all=false; apply(); });
-  $("showall").addEventListener("click",function(){ all=!all; $("showall").textContent=all?"Filter by age":"Show all ten"; apply(); });
-  apply();
-})();
+(function(){"use strict";
+ var $=function(i){return document.getElementById(i)},s=$("age"),o=$("agev"),m=$("agemsg"),all=false;
+ var rows=[].slice.call(document.querySelectorAll(".toc-row"));
+ function apply(){var v=+s.value;o.textContent=v;var live=0;
+  rows.forEach(function(r){var on=all||(v>=+r.dataset.lo&&v<=+r.dataset.hi);
+   r.classList.toggle("dim",!on); if(on)live++;});
+  m.textContent=all?"Showing all ten."
+   :live?live+(live===1?" issue is":" issues are")+" live at "+v+". The rest are dimmed, not gone."
+        :"Nothing lands squarely at "+v+", but the nearest ones are worth reading early.";}
+ s.addEventListener("input",function(){all=false;apply()});
+ $("showall").addEventListener("click",function(){all=!all;
+   $("showall").textContent=all?"Filter by age":"Show all ten";apply()});
+ apply();})();
 </script>
+</body>
+</html>

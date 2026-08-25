@@ -36,6 +36,39 @@ PAGES = {
 AUDIO = {"magazine": "audio/no-01-dog-parents-web.m4a",
          "zine":     "audio/no-01-dog-kids-web.m4a"}
 
+# The canonical site. Links to pages that have no Artifact of their own are
+# rewritten to point here, so an Artifact never contains a dead relative link.
+SITE = "https://skyspeak.github.io/magazine/"
+
+
+def inline_assets(html, page_path):
+    """Fold ../assets/*.css and ../assets/widgets.js into the document.
+
+    An Artifact is one file with no siblings, so a relative asset reference is a
+    dead link. Issue No. 01 has its CSS inline already and is unaffected."""
+    base = os.path.dirname(os.path.join(REPO, page_path))
+
+    def css(m):
+        p = os.path.normpath(os.path.join(base, m.group(1)))
+        return "<style>\n" + open(p).read() + "\n</style>" if os.path.exists(p) else m.group(0)
+    html = re.sub(r'<link rel="stylesheet" href="((?:\.\./)?assets/[^"]+)">', css, html)
+
+    def js(m):
+        p = os.path.normpath(os.path.join(base, m.group(1)))
+        return "<script>\n" + open(p).read() + "\n</script>" if os.path.exists(p) else m.group(0)
+    return re.sub(r'<script src="((?:\.\./)?assets/[^"]+)"[^>]*></script>', js, html)
+
+
+def absolutise(html, page_path):
+    """Point any remaining local link at the published site."""
+    def fix(m):
+        attr, href = m.group(1), m.group(2)
+        if href.startswith(("http", "data:", "mailto:", "#")):
+            return m.group(0)
+        target = os.path.normpath(os.path.join(os.path.dirname(page_path), href))
+        return f'{attr}="{SITE}{target}"'
+    return re.sub(r'(href|src)="([^"]+)"', fix, html)
+
 
 def build(key):
     src = os.path.join(REPO, PAGES[key])
@@ -48,12 +81,16 @@ def build(key):
         if n != 1:
             raise SystemExit(f"{PAGES[key]}: expected one .m4a src, found {n}")
 
+    html = inline_assets(html, PAGES[key])
+
     for other, url in ARTIFACTS.items():
         if other == key:
             continue
         rel = os.path.relpath(PAGES[other], os.path.dirname(PAGES[key]))
         html = html.replace('href="' + rel + '"',
                             'href="' + url + '" target="_blank" rel="noopener"')
+
+    html = absolutise(html, PAGES[key])
 
     os.makedirs(OUT, exist_ok=True)
     dst = os.path.join(OUT, os.path.basename(PAGES[key]))
