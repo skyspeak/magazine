@@ -186,3 +186,21 @@ footer{margin-top:2.4rem;padding:2rem 0 3.4rem;background:var(--paper-3)}
 .toc-row .d{font-size:.92rem;color:var(--ink-2);line-height:1.4}
 @media (max-width:640px){.toc-row{grid-template-columns:1fr;gap:.25rem}.toc-row .n{order:-1}}
 @media print{.filter{display:none}.toc-row.dim{opacity:1}}
+
+/* ---- for schools ---- */
+.offer{border:2px solid var(--rule-hard);background:var(--paper-2);padding:1.2rem 1.3rem;margin:1.6rem 0}
+.offer p:last-child{margin-bottom:0}
+.blurb{border:1px solid var(--rule-hard);background:var(--field);padding:.85rem 1rem;margin:0 0 .7rem}
+.blurb .bt{font-family:"Courier Prime",monospace;font-size:.63rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--brass);display:block;margin-bottom:.4rem}
+.blurb .bx{font-size:.95rem;line-height:1.5}
+.blurb .bx a{color:var(--brass)}
+.copy{font-family:"Courier Prime",monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+  background:none;border:1px solid var(--edge);color:var(--ink);padding:.22rem .6rem;cursor:pointer;margin-top:.6rem}
+.copy:hover{background:var(--brass-wash)}
+.steps-n{counter-reset:sn;list-style:none;margin:.6rem 0 0;padding:0}
+.steps-n li{counter-increment:sn;display:grid;grid-template-columns:2.6rem 1fr;gap:.8rem;
+  align-items:baseline;margin-bottom:.7rem;font-size:.97rem}
+.steps-n li::before{content:counter(sn);font-family:"Big Shoulders Display",Impact,sans-serif;
+  font-weight:800;font-size:1.5rem;line-height:1;color:var(--brass)}
+.steps-n li b{display:block}

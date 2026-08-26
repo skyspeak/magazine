@@ -140,6 +140,31 @@
     });
   }
 
+  /* ---- copy-to-clipboard: <button data-copy="#id"> ------------------- */
+  $$("[data-copy]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var src = document.querySelector(btn.getAttribute("data-copy"));
+      if (!src) return;
+      var text = (src.innerText || src.textContent || "").trim();
+      var done = function () {
+        var was = btn.textContent;
+        btn.textContent = "Copied";
+        setTimeout(function () { btn.textContent = was; }, 1600);
+      };
+      var fallback = function () {
+        var ta = document.createElement("textarea");
+        ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); done(); }
+        catch (e) { btn.textContent = "Select and copy"; }
+        document.body.removeChild(ta);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } else { fallback(); }
+    });
+  });
+
   var KIND = { checklist: checklist, chooser: chooser, streak: streak, dial: dial, sorter: sorter };
   $$("[data-widget]").forEach(function (el) {
     var fn = KIND[el.getAttribute("data-widget")];

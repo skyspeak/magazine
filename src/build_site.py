@@ -24,24 +24,56 @@ K_FONTS = ('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
  '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap">\n'
  '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,500;0,600;0,700;0,800;1,600&display=swap">')
 
-P_COLO = ("<strong>The Big Ask.</strong> Written and designed by Claude, an AI made by Anthropic. "
+# Cookieless, aggregate-only analytics. Empty means nothing is emitted at all -
+# no dead script tag, and the privacy wording stays literally true. To turn it
+# on, paste the Cloudflare Web Analytics token here and rebuild.
+ANALYTICS_TOKEN = ""
+
+# Institutional enquiries need somewhere to land. Leave empty and the contact
+# block is omitted rather than shipping a dead mailto.
+CONTACT_EMAIL = ""
+
+def analytics():
+    if not ANALYTICS_TOKEN:
+        return ""
+    return ('\n<script defer src="https://static.cloudflareinsights.com/beacon.min.js" '
+            'data-cf-beacon=\'{"token": "%s"}\'></script>' % ANALYTICS_TOKEN)
+
+PRIVACY = ("<strong>Nothing you tick or type is stored or sent.</strong> Every worksheet is "
+ "local to your browser and vanishes when you close the tab.")
+PRIVACY_WITH_ANALYTICS = ("<strong>Nothing you tick or type is stored or sent.</strong> Every "
+ "worksheet is local to your browser and vanishes when you close the tab. We do count page "
+ "visits in aggregate, with no cookies and nothing that identifies you.")
+
+P_COLO = (
+ "<strong>The Big Ask.</strong> Written and designed by Claude, an AI made by Anthropic. "
  "There is no human newsroom here and no byline to look up.<br><br>"
  "<strong>Not professional advice.</strong> These are conversation structures, not rules. Nothing here is "
  "medical, legal, psychological or safeguarding guidance. Age bands are rough and your child is not a band. "
  "Anything touching a child's safety belongs with people who know your family.<br><br>"
- "<strong>Nothing you tick is stored or sent.</strong> Everything on this page is local to your browser.<br><br>"
+ + (PRIVACY_WITH_ANALYTICS if ANALYTICS_TOKEN else PRIVACY)
+ + "<br><br>"
  "The method, in one line: decide it out loud, decide it with them in the room, and if the answer is "
  "not yet, bring a reason and a date.")
-K_COLO = ("<strong>Made by a computer.</strong> All of this was written by an AI called Claude. There's no person "
+
+K_COLO = (
+ "<strong>Made by a computer.</strong> All of this was written by an AI called Claude. There's no person "
  "behind it. You should know that when someone gives you advice.<br><br>"
  "The advice is real though - it's the same as the grown-up version, with fewer words.<br><br>"
- "<strong>Nothing you tap gets sent anywhere.</strong> Streak trackers are saved on your own device and nobody else can see them.")
+ "<strong>Nothing you tap gets sent anywhere.</strong> Streak trackers are saved on your own device and "
+ "nobody else can see them."
+ + ("<br><br>We do count page visits in aggregate - no cookies, nothing that says it was you."
+    if ANALYTICS_TOKEN else ""))
+
+
+
 
 
 def ascii_only(s):
     return "".join(c if ord(c) < 128 else "&#%d;" % ord(c) for c in s)
 
 SITE = "https://skyspeak.github.io/magazine/"
+
 
 
 def social(title, desc, page_path, image):
@@ -77,7 +109,7 @@ def page(title, desc, css, fonts, body, extra_js="", up="../", page_path="", ima
 </head>
 <body>
 {body}
-<script src="{up}assets/widgets.js" defer></script>{extra_js}
+<script src="{up}assets/widgets.js" defer></script>{extra_js}{analytics()}
 </body>
 </html>"""
 
@@ -330,6 +362,122 @@ def kids_contents():
                 page_path="kids/no-02-11-ten-things-to-ask-for.html", image="contents-kids.png")
 
 
+def schools_page():
+    """The institutional offer.
+
+    A PTA newsletter editor and a form tutor both have the same objection, which
+    is not price - it is effort. So this page hands over paste-ready copy and a
+    session that runs itself, and answers the AI question before it gets asked."""
+    ALL = [dict(no="01", ask="So you want to get a dog", band="Usually 6&ndash;16",
+                q="What a dog actually costs, and who does the six a.m. walk.",
+                p="parents/no-01-so-you-want-a-dog.html", k="kids/no-01-the-case-for-a-dog.html")]
+    ALL += [dict(no=i["no"], ask=i["ask"], band=i["band"], q=real_question(i),
+                 p=f"parents/no-{i['no']}-{i['slug']}.html",
+                 k=f"kids/no-{i['no']}-{i['slug']}.html") for i in ISSUES]
+
+    blurbs = "".join(f"""
+    <div class="blurb">
+      <span class="bt">No. {a['no']} &middot; {a['band']}</span>
+      <div class="bx" id="b{a['no']}"><strong>{a['ask']}</strong> &mdash; {a['q']}
+      A free one-page guide for parents, plus a version written for your child. No sign-up and nothing to install:
+      {SITE}{a['p']}</div>
+      <button type="button" class="copy" data-copy="#b{a['no']}">Copy</button>
+    </div>""" for a in ALL)
+
+    rows = "".join(f"""
+      <a class="toc-row" href="{a['p']}">
+        <span class="n mono">No. {a['no']}</span>
+        <span class="t"><b>{a['ask']}</b><em>{a['band']}</em></span>
+        <span class="d">{a['q']} &middot; <a href="{a['k']}">kid&rsquo;s edition</a></span>
+      </a>""" for a in ALL)
+
+    contact = (f"""
+  <section class="blk">
+    <h2 class="sec">Ask us anything</h2>
+    <p class="sec-sub">Including &ldquo;can we put this in Monday&rsquo;s newsletter&rdquo;, to which the answer is yes</p>
+    <div class="col"><p><a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p></div>
+  </section>""" if CONTACT_EMAIL else "")
+
+    body = f"""<div class="top"><div class="wrap">
+  <span><a href="index.html">The Big Ask</a></span><span>For schools, PTAs and practices</span>
+</div></div>
+
+<header class="hd"><div class="wrap">
+  <p class="eyebrow">For schools, PTAs, tutors and practices</p>
+  <h1 class="ask display">Print it.<br><em>Hand it out.</em></h1>
+  <p class="thesis">Eleven conversations every family has to have, each on one page &mdash; with a second page
+  written for the child. <b>Free to copy and distribute.</b> No sign-up, no licence fee, no accounts, nothing to install.</p>
+</div></header>
+
+<main class="wrap">
+  <section class="blk">
+    <h2 class="sec">Permission, in plain terms</h2>
+    <p class="sec-sub">So nobody has to email anyone to find out</p>
+    <div class="offer">
+      <p><strong>You may</strong> print these, photocopy them, put them in a newsletter, hand them out at
+      parents&rsquo; evening, put them in a waiting room, or run them in a tutor-time session. For any school,
+      nursery, PTA, library, clinic or youth group. No permission needed and no fee.</p>
+      <p><strong>Two conditions.</strong> Keep the note saying it was written by an AI &mdash; families are entitled
+      to know that. And do not resell it.</p>
+      <p style="color:var(--ink-2);font-size:.95rem;margin-top:.8rem">Every page is built to print: black on white,
+      no wasted ink, worksheets that do not break across pages. Print from a browser, or hand over the link.</p>
+    </div>
+  </section>
+
+  <section class="blk">
+    <h2 class="sec">Put one in your newsletter</h2>
+    <p class="sec-sub">Written to be pasted &mdash; no editing needed, nothing to write</p>
+    <div class="col"><p>Each of these is a finished paragraph. Copy one, paste it into the newsletter, done.
+    One a month works well; the age band tells you which year groups it lands with.</p></div>
+    {blurbs}
+  </section>
+
+  <section class="blk">
+    <h2 class="sec">Run it in twenty minutes</h2>
+    <p class="sec-sub">Tutor time, PSHE, advisory, form period</p>
+    <div class="col">
+      <p>The kid&rsquo;s edition is built for this. Each one is a single card &mdash; what the adult is actually
+      worried about, what to say, what not to say, and one thing to go and do.</p>
+      <ol class="steps-n">
+        <li><b>Read the card together. Two minutes.</b> The whole thing is about three hundred words.</li>
+        <li><b>Do the widget. Five minutes.</b> Every issue has one &mdash; a checklist, a sorter, a chooser. It works on a phone or a shared screen, and nothing they tap is recorded.</li>
+        <li><b>Practise the line, in pairs. Eight minutes.</b> One is the child, one is the adult. Swap. The point is saying the sentence out loud before it matters.</li>
+        <li><b>Send the parent half home. Five minutes.</b> Print it, or put the link in the bulletin. The two halves are written to agree with each other.</li>
+      </ol>
+      <p style="margin-top:1rem">It maps onto PSHE relationships and health education in the UK, and onto
+      responsible decision-making in most SEL frameworks in the US. We would not overclaim it as a scheme of
+      work &mdash; it is a conversation starter that happens to be structured.</p>
+    </div>
+  </section>
+
+  <section class="blk">
+    <h2 class="sec">Before you ask: yes, an AI wrote it</h2>
+    <p class="sec-sub">You will need to answer this, so here is the answer</p>
+    <div class="col">
+      <p>Every word, both podcast voices and all of the design were produced by Claude, an AI model made by
+      Anthropic. There is no human author to credit and we do not pretend otherwise &mdash; it says so on
+      every page, in language a child can read.</p>
+      <p>What that means for you, plainly. The advice is conventional and conservative: it will not tell a
+      child to keep a secret from a parent, and it routes anything touching safety back to adults who know
+      the family. It is not medical, legal or safeguarding guidance and does not claim to be. Read one before
+      you send it &mdash; that is a reasonable bar for anything you hand to families, whoever wrote it.</p>
+      <p>Some schools will be fine with that and some will not. We would rather you decided knowing.</p>
+    </div>
+  </section>
+
+  <section class="blk">
+    <h2 class="sec">The eleven</h2>
+    <p class="sec-sub">Each with a parent page and a kid page</p>
+    <div class="toc-list">{rows}</div>
+  </section>
+{contact}
+</main>
+
+<footer><div class="wrap"><p class="colo">{P_COLO}</p></div></footer>"""
+    return page("For Schools", "Eleven conversations every family has to have - free to print, copy and hand out. No sign-up, no licence fee.",
+                "assets/parents.css", P_FONTS, body, up="", page_path="for-schools.html", image="schools.png")
+
+
 def index_page():
     rows = "".join(f"""
       <a class="toc-row" href="parents/no-{i['no']}-{i['slug']}.html">
@@ -385,6 +533,13 @@ def index_page():
   </section>
 </main>
 
+  <section class="blk">
+    <h2 class="sec">For schools, PTAs and practices</h2>
+    <p class="sec-sub">Free to print, copy and hand out &mdash; no sign-up, no licence fee</p>
+    <div class="col"><p>Paste-ready newsletter copy, a twenty-minute session that runs itself, and permission
+    stated in plain terms so nobody has to email anyone. <a href="for-schools.html"><strong>Take a look &rarr;</strong></a></p></div>
+  </section>
+
 <footer><div class="wrap"><p class="colo">{P_COLO}<br><br>
 Source, scripts and the audio pipeline:
 <a href="https://github.com/skyspeak/magazine">github.com/skyspeak/magazine</a></p></div></footer>"""
@@ -403,6 +558,7 @@ def build():
     out.append(("parents/no-02-11-ten-more-big-asks.html", parents_contents()))
     out.append(("kids/no-02-11-ten-things-to-ask-for.html", kids_contents()))
     out.append(("index.html", index_page()))
+    out.append(("for-schools.html", schools_page()))
     for path, htm in out:
         full = os.path.join(REPO, path)
         os.makedirs(os.path.dirname(full), exist_ok=True)
