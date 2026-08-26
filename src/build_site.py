@@ -9,7 +9,7 @@ issue means editing content.py and re-running - not writing HTML.
 
 Issue No. 01 is hand-built and is deliberately not touched by this script.
 """
-import json, os, sys, html as _html
+import json, os, re, sys, html as _html
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from content import ISSUES
 
@@ -199,12 +199,25 @@ def kid_page(i, prev, nxt):
                 "../assets/kids.css", K_FONTS, body)
 
 
+def real_question(i):
+    """The one-line summary for the contents pages.
+
+    deciding.q is written as "Not <em>the wrong question</em>. It is: the real one?"
+    Take the half after "It is:" - the half before it is the question the issue
+    exists to talk you out of, and showing that as the summary inverts the point.
+    """
+    q = i["deciding"]["q"]
+    q = q.split("It is:", 1)[1] if "It is:" in q else q
+    q = re.sub(r"<[^>]+>", "", q).strip()
+    return q[0].upper() + q[1:] if q else q
+
+
 def parents_contents():
     rows = "".join(f"""
     <a class="toc-row" href="no-{i['no']}-{i['slug']}.html" data-lo="{i['ages'][0]}" data-hi="{i['ages'][1]}">
       <span class="n mono">No. {i['no']}</span>
       <span class="t"><b>{i['ask']}</b><em>{i['band']}</em></span>
-      <span class="d">{i['deciding']['q'].split('.')[0].replace('Not <em>','').replace('</em>','')}.</span>
+      <span class="d">{real_question(i)}</span>
     </a>""" for i in ISSUES)
     body = f"""<div class="top"><div class="wrap">
   <span><a href="../index.html">The Big Ask</a> &middot; A field manual for the decisions you make together</span>
