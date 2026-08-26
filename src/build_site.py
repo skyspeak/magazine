@@ -41,7 +41,29 @@ K_COLO = ("<strong>Made by a computer.</strong> All of this was written by an AI
 def ascii_only(s):
     return "".join(c if ord(c) < 128 else "&#%d;" % ord(c) for c in s)
 
-def page(title, desc, css, fonts, body, extra_js="", up="../"):
+SITE = "https://skyspeak.github.io/magazine/"
+
+
+def social(title, desc, page_path, image):
+    """Open Graph + Twitter card. Without these a shared link is bare text, and
+    shared links are how this kind of thing actually travels."""
+    url = SITE + page_path
+    return f'''<link rel="canonical" href="{url}">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Big Ask">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{desc}">
+<meta property="og:url" content="{url}">
+<meta property="og:image" content="{SITE}og/{image}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{title}">
+<meta name="twitter:description" content="{desc}">
+<meta name="twitter:image" content="{SITE}og/{image}">'''
+
+
+def page(title, desc, css, fonts, body, extra_js="", up="../", page_path="", image="home.png"):
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -49,6 +71,7 @@ def page(title, desc, css, fonts, body, extra_js="", up="../"):
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{desc}">
+{social(title, desc, page_path, image)}
 {fonts}
 <link rel="stylesheet" href="{css}">
 </head>
@@ -142,9 +165,11 @@ def parent_page(i, prev, nxt):
 </main>
 
 <footer><div class="wrap"><p class="colo">{P_COLO}</p></div></footer>"""
-    return page(f"No. {i['no']} &middot; {i['title']}".replace("&middot;","-"),
-                _html.escape(i['thesis'].replace('<b>','').replace('</b>','')[:180]),
-                "../assets/parents.css", P_FONTS, body)
+    return page(f"No. {i['no']} - {i['title']}",
+                _html.escape(real_question(i)),
+                "../assets/parents.css", P_FONTS, body,
+                page_path=f"parents/no-{i['no']}-{i['slug']}.html",
+                image=f"no-{i['no']}-parents.png")
 
 
 def kid_page(i, prev, nxt):
@@ -195,8 +220,10 @@ def kid_page(i, prev, nxt):
 </div></main>
 
 <footer><div class="wrap"><p class="colo">{K_COLO}</p></div></footer>"""
-    return page(i["title"], _html.escape(f"{i['title']}: what they're scared of, what to say, and the one job that does the work."),
-                "../assets/kids.css", K_FONTS, body)
+    return page(i["title"], _html.escape(f"What they're scared of, what to say, and the one job that does the work."),
+                "../assets/kids.css", K_FONTS, body,
+                page_path=f"kids/no-{i['no']}-{i['slug']}.html",
+                image=f"no-{i['no']}-kids.png")
 
 
 def real_question(i):
@@ -261,7 +288,8 @@ def parents_contents():
  apply();})();
 </script>"""
     return page("Ten More Big Asks", "Issues 02-11 of The Big Ask, one page each, filterable by your kid's age.",
-                "../assets/parents.css", P_FONTS, body, js)
+                "../assets/parents.css", P_FONTS, body, js,
+                page_path="parents/no-02-11-ten-more-big-asks.html", image="contents-parents.png")
 
 
 def kids_contents():
@@ -298,7 +326,8 @@ def kids_contents():
 
 <footer><div class="wrap"><p class="colo">{K_COLO}</p></div></footer>"""
     return page("Ten Things to Ask For", "The kid's edition of Issues 02-11 - one page per ask.",
-                "../assets/kids.css", K_FONTS, body)
+                "../assets/kids.css", K_FONTS, body,
+                page_path="kids/no-02-11-ten-things-to-ask-for.html", image="contents-kids.png")
 
 
 def index_page():
@@ -361,7 +390,7 @@ Source, scripts and the audio pipeline:
 <a href="https://github.com/skyspeak/magazine">github.com/skyspeak/magazine</a></p></div></footer>"""
     return page("The Big Ask",
         "A magazine about the first big decisions parents and kids make together. Every issue comes in two halves.",
-        "assets/parents.css", P_FONTS, body, up="")
+        "assets/parents.css", P_FONTS, body, up="", page_path="", image="home.png")
 
 
 def build():
