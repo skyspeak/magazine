@@ -31,7 +31,7 @@ ANALYTICS_TOKEN = "0025ab66f6d745d8b51a958d7c208e7f"
 
 # Institutional enquiries need somewhere to land. Leave empty and the contact
 # block is omitted rather than shipping a dead mailto.
-CONTACT_EMAIL = ""
+CONTACT_EMAIL = "skyspeak@gmail.com"
 
 def analytics():
     if not ANALYTICS_TOKEN:
@@ -576,6 +576,8 @@ def index_page():
   </section>
 
 <footer><div class="wrap"><p class="colo">{P_COLO}<br><br>
+Schools, PTAs and anyone wanting to print or hand these out:
+<a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a><br><br>
 Source, scripts and the audio pipeline:
 <a href="https://github.com/skyspeak/magazine">github.com/skyspeak/magazine</a></p></div></footer>"""
     return page("The Big Ask",
