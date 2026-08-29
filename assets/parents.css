@@ -27,7 +27,7 @@ body{margin:0;background:var(--paper);color:var(--ink);overflow-wrap:break-word;
   font-family:"Source Serif 4",Charter,Georgia,serif;font-size:1.05rem;line-height:1.6;-webkit-font-smoothing:antialiased}
 .display{font-family:"Big Shoulders Display","Oswald","Arial Narrow",Impact,sans-serif}
 .mono{font-family:"Courier Prime","Courier New",monospace}
-.wrap{max-width:58rem;margin:0 auto;padding:0 1.4rem}
+.wrap{max-width:58rem;margin:0 auto;padding-left:1.4rem;padding-right:1.4rem}
 .col{max-width:37rem}
 p{margin:0 0 .75rem}
 a{color:var(--ink);text-decoration-color:var(--brass);text-underline-offset:3px}

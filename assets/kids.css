@@ -30,7 +30,7 @@
 body{margin:0;background:var(--paper);color:var(--ink);overflow-wrap:break-word;
   font-family:"Lexend",system-ui,-apple-system,sans-serif;font-size:1.15rem;line-height:1.52;-webkit-font-smoothing:antialiased}
 .marker{font-family:"Shantell Sans","Comic Sans MS",cursive}
-.wrap{max-width:50rem;margin:0 auto;padding:0 1.15rem}
+.wrap{max-width:50rem;margin:0 auto;padding-left:1.15rem;padding-right:1.15rem}
 p{margin:0 0 .8rem;max-width:33rem}
 a{color:var(--pink)}
 :is(a,button,input,textarea,[tabindex]):focus-visible{outline:3px solid var(--blue);outline-offset:3px}
