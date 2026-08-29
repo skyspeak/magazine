@@ -194,6 +194,13 @@ has to arrive before the page renders:
 
 Edit the web version. Treat `build/` as output.
 
+## Distribution
+
+[ACQUISITION.md](ACQUISITION.md) ranks ten channels by fit to this project, with
+the first concrete move for each and three tempting ones to avoid.
+[OUTREACH.md](OUTREACH.md) is the detailed playbook for the one that was chosen:
+schools and PTAs.
+
 ## A note on the numbers
 
 Costs are 2026 US estimates assembled from typical published ranges, and are
