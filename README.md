@@ -1,15 +1,15 @@
 # The Big Ask
 
 A small magazine about the first big decisions parents and kids have to make
-together — and a companion edition, for every issue, written for the kid.
+together , and a companion edition, for every issue, written for the kid.
 
 Every issue comes in two halves. The parents' half has the numbers, the labour
 audit, the scripts and the contract. The kid's half is shorter, plainer, and
 written to them rather than about them. Neither half contradicts the other, and
 each links to its counterpart.
 
-The whole thing — writing, design, illustration, and the voices in the two
-podcast episodes — was made by Claude, an AI model from Anthropic. There is no
+The whole thing . Writing, design, illustration, and the voices in the two
+podcast episodes . Was made by Claude, an AI model from Anthropic. There is no
 human newsroom behind it and no byline to look up. It says so on every page,
 because a magazine that reads like people wrote it should say plainly when
 nobody did.
@@ -18,7 +18,7 @@ nobody did.
 
 ## What's here
 
-**No. 01 — the dog** is the long-form issue, hand-built:
+**No. 01 : the dog** is the long-form issue, hand-built:
 [parents](parents/no-01-so-you-want-a-dog.html) · [kids](kids/no-01-the-case-for-a-dog.html).
 
 **Nos. 02–11** are one issue each, generated from `src/content.py`. Contents pages:
@@ -44,8 +44,8 @@ by age, a two-week trial protocol, a fillable job application, and a family
 agreement everybody signs. The kid's half has a fourteen-morning tracker and a
 builder that assembles a one-page case they can hand over.
 
-**Issues Nos. 02–11** are short by design — one page each, same shape every time:
-what you are actually deciding, the facts worth knowing, a script, the one rule,
+**Issues Nos. 02–11** are short by design : one page each, same shape every time:
+what you are deciding, the facts worth knowing, a script, the one rule,
 the longer version, and a live readiness checklist. Each has a companion kid
 edition of about three hundred words: what they're scared of, what to say, what
 not to say, the one job, and what to ask for instead if it's a no.
@@ -72,7 +72,7 @@ Transcripts are in `transcripts/`. The `-web` files are the lower-bitrate
 versions the pages stream; the others are the higher-bitrate downloads.
 
 Chapter jumping needs a server that honours HTTP `Range` requests. GitHub Pages
-does. Python's `http.server` does **not** — audio will play from the start but
+does. Python's `http.server` does **not** . Audio will play from the start but
 will not seek, which is a property of that server, not of the page.
 
 ## Rebuilding the audio
@@ -93,7 +93,7 @@ afconvert -f m4af -d aac -s 0 -b 64000 audio/no-01-dog-parents.wav audio/no-01-d
 
 The render scripts read `src/script.txt` and `src/script-kid.txt`, one line per
 line of dialogue in the form `SPEAKER::RATE::text`. `[[slnc 400]]` inserts a
-400 ms pause — it is a macOS speech command, not markup. Theme music is
+400 ms pause . It is a macOS speech command, not markup. Theme music is
 synthesised from sine tones inside the render scripts; there are no audio assets.
 
 Chapter offsets are computed from the render and live in `src/chapters.json` and
@@ -102,7 +102,7 @@ re-record, update them there too.
 
 ## Editing
 
-Issues 02–11 are **generated**. Do not edit those HTML files by hand — they are
+Issues 02–11 are **generated**. Do not edit those HTML files by hand . They are
 build output and the next build will overwrite them.
 
 ```
@@ -125,7 +125,7 @@ the index all pick it up. Nothing else needs touching.
 
 **The five widgets.** A page declares one with a `data-widget` attribute and a
 JSON payload; `assets/widgets.js` does the rest. Nothing is transmitted, and
-only `streak` persists — to `localStorage`, degrading quietly when unavailable.
+only `streak` persists . To `localStorage`, degrading quietly when unavailable.
 
 | kind | what it does |
 |---|---|
@@ -144,7 +144,7 @@ Things worth preserving if you change the CSS:
 - **Both themes are designed, not inverted.** Colours are defined as tokens in
   three places: `:root` (light), a `prefers-color-scheme: dark` block guarded
   with `:not([data-theme="light"])`, and `:root[data-theme="dark"]`. Never give a
-  colour its only definition inside a media query — the un-stamped "system"
+  colour its only definition inside a media query : the un-stamped "system"
   state is the common case and it will fall through.
 - **The print stylesheets use `!important` on purpose.** Without it the print
   tokens lose on specificity to the dark-mode rule, and printing from a dark

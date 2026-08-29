@@ -1,7 +1,7 @@
 # Ten ways in
 
-Distribution channels ranked by fit to **this** asset — eleven free issues in
-paired editions, built to print, openly AI-written, with nothing to buy — not
+Distribution channels ranked by fit to **this** asset . Eleven free issues in
+paired editions, built to print, openly AI-written, with nothing to buy , not
 by what works for products in general.
 
 Companion to [OUTREACH.md](OUTREACH.md), which is the detailed playbook for
@@ -10,8 +10,8 @@ channel 1.
 ## Read this first
 
 **"Customers" is still aspirational.** There is nothing to buy, so every channel
-below acquires *distribution*, not revenue. That is the right order — you cannot
-price something nobody has read — but it means success for the next three months
+below acquires *distribution*, not revenue. That is the right order . You cannot
+price something nobody has read , but it means success for the next three months
 is measured in schools that ran an issue, not in money.
 
 **You cannot run ten channels.** Run **1 and 3**. They are the only two that
@@ -38,7 +38,7 @@ from 6 down is a distraction until one of them shows a pulse.
 **1. PTA and school newsletters** — *built for; start here*
 One send reaches several hundred families. The editor is not evaluating a
 product, they are filling a slot in Monday's bulletin and they are short of
-time — which is why `for-schools.html` hands them a finished paragraph and a
+time , which is why `for-schools.html` hands them a finished paragraph and a
 copy button rather than a pitch.
 → Twenty schools within reach. Find the newsletter editor for each. Send the
 email in OUTREACH.md, one issue only, chosen by season.
@@ -53,7 +53,7 @@ school. The second yes is far cheaper than the first.
 **3. Pinterest** — *the sleeper; run in parallel with 1*
 The best consumer fit you have and the one most people skip. Pinterest is a
 search engine for parenting printables, and unlike Google it does not weigh
-author credentials — so being AI-written costs nothing here. It rewards visual
+author credentials , so being AI-written costs nothing here. It rewards visual
 distinctiveness, which this design has in unusual measure, and pins keep
 delivering for years. You already have thirty widgets and worksheets; each is
 a pin.
@@ -77,7 +77,7 @@ printed. Paper in hand converts better than a link.
 
 **6. Clinics and health visitors** — *durable, heavily gatekept*
 A health visitor reaches every family in a district. But this is where the AI
-disclosure bites hardest — clinical settings are cautious about unbadged advice,
+disclosure bites hardest . Clinical settings are cautious about unbadged advice,
 and rightly so.
 → Leave it until two schools are running it. "Three local schools use this" is
 the sentence that gets you past a practice manager.
@@ -118,15 +118,15 @@ and will not return. Its value is indirect: links (helps 4) and screenshots
   is removal, a ban, and a thread attached to the name that outranks everything
   else you do.
 - **Large Facebook parenting groups.** Same shape; admins remove links from
-  non-members on sight. The exception is a group you are genuinely part of,
-  posting as a parent who made something — which does not scale.
+  non-members on sight. The exception is a group you are part of,
+  posting as a parent who made something , which does not scale.
 - **Paid ads.** Nothing to sell means no return to measure and no bid you can
   justify. Ads scale something that already converts.
 
 ## What would make all of them work better
 
 1. **A contact address.** `CONTACT_EMAIL` in `src/build_site.py` is empty, so
-   the offer page omits the contact block entirely — a keen deputy head has no
+   the offer page omits the contact block entirely : a keen deputy head has no
    way to reply.
 2. **A real domain.** `skyspeak.github.io/magazine` is not something anyone says
    out loud or trusts in a school newsletter. Cheapest credibility available.
@@ -137,6 +137,6 @@ and will not return. Its value is indirect: links (helps 4) and screenshots
 ---
 
 The ranking assumes what is true today: nothing to buy, no list, no domain,
-openly AI-written, one person doing it. Change any of those and it moves — a
+openly AI-written, one person doing it. Change any of those and it moves : a
 paid pack would lift 4 and 9 sharply, and a named human co-author would lift 6
 more than anything else here.

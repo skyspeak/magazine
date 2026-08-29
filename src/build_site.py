@@ -24,7 +24,7 @@ K_FONTS = ('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
  '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap">\n'
  '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,500;0,600;0,700;0,800;1,600&display=swap">')
 
-# Cookieless, aggregate-only analytics. Empty means nothing is emitted at all -
+# Cookieless, aggregate-only analytics. Empty means nothing is emitted at all:
 # no dead script tag, and the privacy wording stays literally true. To turn it
 # on, paste the Cloudflare Web Analytics token here and rebuild.
 ANALYTICS_TOKEN = "0025ab66f6d745d8b51a958d7c208e7f"
@@ -80,7 +80,7 @@ SITE = "https://skyspeak.github.io/magazine/"
 
 def social(title, desc, page_path, image):
     """Open Graph + Twitter card. Without these a shared link is bare text, and
-    shared links are how this kind of thing actually travels."""
+    shared links are how this kind of thing travels."""
     url = SITE + page_path
     return f'''<link rel="canonical" href="{url}">
 <meta property="og:type" content="article">
@@ -156,10 +156,10 @@ def parent_page(i, prev, nxt):
 
 <main class="wrap">
   <section class="blk">
-    <h2 class="sec">What you are actually deciding</h2>
-    <p class="sec-sub">Start here, because the wrong question wastes the conversation</p>
+    <h2 class="sec">What you are deciding</h2>
+    <p class="sec-sub">Start here. The wrong question wastes the conversation</p>
     <div class="grid">
-      <div class="box"><h4>The real question</h4><p>{i['deciding']['q']}</p><ul class="ck">{bullets}</ul></div>
+      <div class="box"><h4>The question</h4><p>{i['deciding']['q']}</p><ul class="ck">{bullets}</ul></div>
       <div class="box"><h4>Facts worth knowing</h4>{facts}</div>
     </div>
     {widget(i['widget'])}
@@ -189,7 +189,7 @@ def parent_page(i, prev, nxt):
     <div class="box hard" style="margin-top:1.1rem"><h4>If it is not yet</h4><p>{i['notyet']}</p></div>
     <div class="crossref"><span class="k">There is an edition for them</span>
       <p style="margin:0"><a href="../kids/no-{i['no']}-{i['slug']}.html">The kid&rsquo;s version of this issue</a>
-      is written to your child rather than about them: what you are actually worried about, what to say, and the one job that does the work. Hand it over and leave the room.</p></div>
+      is written to your child rather than about them: what you are worried about, what to say, and the one job that does the work. Hand it over and leave the room.</p></div>
   </section>
 
   <nav class="pager">
@@ -218,7 +218,7 @@ def kid_page(i, prev, nxt):
 <header><div class="wrap">
   <span class="kick">The Big Ask &middot; Kid Cut &middot; No. {i['no']}</span>
   <h1 class="marker">{k.get('h1', i['ask'])}</h1>
-  <p class="sub">What they&rsquo;re actually scared of, what to say, and the one job that does the work.</p>
+  <p class="sub">What they&rsquo;re scared of, what to say, and the one job that does the work.</p>
 </div></header>
 
 <main><div class="wrap">
@@ -234,7 +234,7 @@ def kid_page(i, prev, nxt):
   <h3 class="mid">Why that works</h3>
   {why}
 
-  <h3 class="mid">What to actually do</h3>
+  <h3 class="mid">What to do</h3>
   <ol class="steps">{steps}</ol>
 
   {kid_widget(k['widget'])}
@@ -287,7 +287,7 @@ def parents_contents():
 
 <header class="hd"><div class="wrap">
   <h1 class="ask display">Ten more<br><em>big asks</em></h1>
-  <p class="thesis">Issue No. 01 took one decision apart at full length. These are the ten that follow it &mdash; each its own issue, same shape every time, so you can find the thing you need the night before you need it.</p>
+  <p class="thesis">Issue No. 01 took one decision apart at full length. These are the ten that follow it , each its own issue, same shape every time, so you can find the thing you need the night before you need it.</p>
   <div class="filter">
     <label for="age">Whose house is this?</label>
     <input type="range" id="age" min="5" max="18" value="10">
@@ -300,8 +300,7 @@ def parents_contents():
 <main class="wrap">
   <div class="toc-list" id="toc">{rows}</div>
   <div class="crossref"><span class="k">The kid&rsquo;s edition</span>
-    <p style="margin:0">Every one of these has a companion written to your child rather than about them &mdash;
-    one card each, about sixty words. <a href="../kids/no-02-11-ten-things-to-ask-for.html">Ten things to ask for</a>.</p></div>
+    <p style="margin:0">Every one of these has a companion written to your child rather than about them , one card each, about sixty words. <a href="../kids/no-02-11-ten-things-to-ask-for.html">Ten things to ask for</a>.</p></div>
 </main>
 
 <footer><div class="wrap"><p class="colo">{P_COLO}</p></div></footer>"""
@@ -341,11 +340,11 @@ def kids_contents():
 <header><div class="wrap">
   <span class="kick">The Big Ask &middot; Kid Cut &middot; Nos. 02&ndash;11</span>
   <h1 class="marker">Ten things<br>you&rsquo;re going<br>to <em>ask for</em></h1>
-  <p class="sub">One page each. What they&rsquo;re actually scared of, what to say, and the one job that does the work.</p>
+  <p class="sub">One page each. What they&rsquo;re scared of, what to say, and the one job that does the work.</p>
   <div class="rules">
     <div class="rule"><b>1</b><p>Asking again doesn&rsquo;t work. Proof does.</p></div>
     <div class="rule"><b>2</b><p>Find out what they&rsquo;re scared of. It&rsquo;s never the thing you think.</p></div>
-    <div class="rule"><b>3</b><p>&ldquo;Not yet&rdquo; isn&rsquo;t &ldquo;no&rdquo; &mdash; but only if you get a date.</p></div>
+    <div class="rule"><b>3</b><p>&ldquo;Not yet&rdquo; isn&rsquo;t &ldquo;no&rdquo; , but only if you get a date.</p></div>
   </div>
   <nav class="chips" aria-label="Jump to an ask">{chips}</nav>
 </div></header>
@@ -400,11 +399,11 @@ def school_entry_pages():
 def schools_page():
     """The institutional offer.
 
-    A PTA newsletter editor and a form tutor both have the same objection, which
-    is not price - it is effort. So this page hands over paste-ready copy and a
+    A PTA newsletter editor and a form tutor share the same objection, and it is
+    effort rather than price. So this page hands over paste-ready copy and a
     session that runs itself, and answers the AI question before it gets asked."""
     ALL = [dict(no="01", ask="So you want to get a dog", band="Usually 6&ndash;16",
-                q="What a dog actually costs, and who does the six a.m. walk.",
+                q="What a dog costs, and who does the six a.m. walk.",
                 p="parents/no-01-so-you-want-a-dog.html", k="kids/no-01-the-case-for-a-dog.html")]
     ALL += [dict(no=i["no"], ask=i["ask"], band=i["band"], q=real_question(i),
                  p=f"parents/no-{i['no']}-{i['slug']}.html",
@@ -440,7 +439,7 @@ def schools_page():
 <header class="hd"><div class="wrap">
   <p class="eyebrow">For schools, PTAs, tutors and practices</p>
   <h1 class="ask display">Print it.<br><em>Hand it out.</em></h1>
-  <p class="thesis">Eleven conversations every family has to have, each on one page &mdash; with a second page
+  <p class="thesis">Eleven conversations every family has to have, each on one page . With a second page
   written for the child. <b>Free to copy and distribute.</b> No sign-up, no licence fee, no accounts, nothing to install.</p>
 </div></header>
 
@@ -452,7 +451,7 @@ def schools_page():
       <p><strong>You may</strong> print these, photocopy them, put them in a newsletter, hand them out at
       parents&rsquo; evening, put them in a waiting room, or run them in a tutor-time session. For any school,
       nursery, PTA, library, clinic or youth group. No permission needed and no fee.</p>
-      <p><strong>Two conditions.</strong> Keep the note saying it was written by an AI &mdash; families are entitled
+      <p><strong>Two conditions.</strong> Keep the note saying it was written by an AI . Families are entitled
       to know that. And do not resell it.</p>
       <p style="color:var(--ink-2);font-size:.95rem;margin-top:.8rem">Every page is built to print: black on white,
       no wasted ink, worksheets that do not break across pages. Print from a browser, or hand over the link.</p>
@@ -461,7 +460,7 @@ def schools_page():
 
   <section class="blk">
     <h2 class="sec">Put one in your newsletter</h2>
-    <p class="sec-sub">Written to be pasted &mdash; no editing needed, nothing to write</p>
+    <p class="sec-sub">Written to be pasted : no editing needed, nothing to write</p>
     <div class="col"><p>Each of these is a finished paragraph. Copy one, paste it into the newsletter, done.
     One a month works well; the age band tells you which year groups it lands with.</p></div>
     {blurbs}
@@ -471,17 +470,16 @@ def schools_page():
     <h2 class="sec">Run it in twenty minutes</h2>
     <p class="sec-sub">Tutor time, PSHE, advisory, form period</p>
     <div class="col">
-      <p>The kid&rsquo;s edition is built for this. Each one is a single card &mdash; what the adult is actually
-      worried about, what to say, what not to say, and one thing to go and do.</p>
+      <p>The kid&rsquo;s edition is built for this. Each one is a single card . What the adult is worried about, what to say, what not to say, and one thing to go and do.</p>
       <ol class="steps-n">
         <li><b>Read the card together. Two minutes.</b> The whole thing is about three hundred words.</li>
-        <li><b>Do the widget. Five minutes.</b> Every issue has one &mdash; a checklist, a sorter, a chooser. It works on a phone or a shared screen, and nothing they tap is recorded.</li>
+        <li><b>Do the widget. Five minutes.</b> Every issue has one : a checklist, a sorter, a chooser. It works on a phone or a shared screen, and nothing they tap is recorded.</li>
         <li><b>Practise the line, in pairs. Eight minutes.</b> One is the child, one is the adult. Swap. The point is saying the sentence out loud before it matters.</li>
         <li><b>Send the parent half home. Five minutes.</b> Print it, or put the link in the bulletin. The two halves are written to agree with each other.</li>
       </ol>
       <p style="margin-top:1rem">It maps onto PSHE relationships and health education in the UK, and onto
       responsible decision-making in most SEL frameworks in the US. We would not overclaim it as a scheme of
-      work &mdash; it is a conversation starter that happens to be structured.</p>
+      work . It is a conversation starter that happens to be structured.</p>
     </div>
   </section>
 
@@ -490,12 +488,12 @@ def schools_page():
     <p class="sec-sub">You will need to answer this, so here is the answer</p>
     <div class="col">
       <p>Every word, both podcast voices and all of the design were produced by Claude, an AI model made by
-      Anthropic. There is no human author to credit and we do not pretend otherwise &mdash; it says so on
+      Anthropic. There is no human author to credit and we do not pretend otherwise . It says so on
       every page, in language a child can read.</p>
       <p>What that means for you, plainly. The advice is conventional and conservative: it will not tell a
       child to keep a secret from a parent, and it routes anything touching safety back to adults who know
       the family. It is not medical, legal or safeguarding guidance and does not claim to be. Read one before
-      you send it &mdash; that is a reasonable bar for anything you hand to families, whoever wrote it.</p>
+      you send it . That is a reasonable bar for anything you hand to families, whoever wrote it.</p>
       <p>Some schools will be fine with that and some will not. We would rather you decided knowing.</p>
     </div>
   </section>
@@ -509,7 +507,7 @@ def schools_page():
 </main>
 
 <footer><div class="wrap"><p class="colo">{P_COLO}</p></div></footer>"""
-    return page("For Schools", "Eleven conversations every family has to have - free to print, copy and hand out. No sign-up, no licence fee.",
+    return page("For Schools", "Eleven conversations every family has to have. Free to print, copy and hand out, with no sign-up and no licence fee.",
                 "assets/parents.css", P_FONTS, body, up="", page_path="for-schools.html", image="schools.png")
 
 
@@ -528,12 +526,12 @@ def index_page():
 <header class="hd"><div class="wrap">
   <h1 class="ask display">The<br><em>Big Ask</em></h1>
   <p class="thesis">A magazine about the first big decisions parents and kids have to make together.
-  Every issue comes in <b>two halves</b> &mdash; one written for you, one written for them.</p>
+  Every issue comes in <b>two halves</b> : one written for you, one written for them.</p>
 </div></header>
 
 <main class="wrap">
   <section class="blk">
-    <h2 class="sec">Issue No. 01 &mdash; The dog</h2>
+    <h2 class="sec">Issue No. 01 : The dog</h2>
     <p class="sec-sub">The long one &middot; with a podcast episode on each side</p>
     <div class="grid">
       <div class="box"><h4>For the parent</h4>
@@ -542,7 +540,7 @@ def index_page():
         walk, scripts by age, a two-week trial, and an agreement everybody signs. 12-minute episode inside.</p></div>
       <div class="box"><h4>For the kid</h4>
         <p><a href="kids/no-01-the-case-for-a-dog.html"><strong>The case for a dog</strong></a></p>
-        <p>How to ask so grown-ups actually listen. A fourteen-morning tracker, and a builder that makes
+        <p>How to ask so grown-ups listen. A fourteen-morning tracker, and a builder that makes
         the one page you hand over. 6-minute episode inside.</p></div>
     </div>
   </section>
@@ -570,7 +568,7 @@ def index_page():
 
   <section class="blk">
     <h2 class="sec">For schools, PTAs and practices</h2>
-    <p class="sec-sub">Free to print, copy and hand out &mdash; no sign-up, no licence fee</p>
+    <p class="sec-sub">Free to print, copy and hand out : no sign-up, no licence fee</p>
     <div class="col"><p>Paste-ready newsletter copy, a twenty-minute session that runs itself, and permission
     stated in plain terms so nobody has to email anyone. <a href="for-schools.html"><strong>Take a look &rarr;</strong></a></p></div>
   </section>
