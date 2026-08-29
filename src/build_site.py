@@ -27,7 +27,7 @@ K_FONTS = ('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 # Cookieless, aggregate-only analytics. Empty means nothing is emitted at all -
 # no dead script tag, and the privacy wording stays literally true. To turn it
 # on, paste the Cloudflare Web Analytics token here and rebuild.
-ANALYTICS_TOKEN = ""
+ANALYTICS_TOKEN = "0025ab66f6d745d8b51a958d7c208e7f"
 
 # Institutional enquiries need somewhere to land. Leave empty and the contact
 # block is omitted rather than shipping a dead mailto.
@@ -36,8 +36,10 @@ CONTACT_EMAIL = ""
 def analytics():
     if not ANALYTICS_TOKEN:
         return ""
-    return ('\n<script defer src="https://static.cloudflareinsights.com/beacon.min.js" '
-            'data-cf-beacon=\'{"token": "%s"}\'></script>' % ANALYTICS_TOKEN)
+    return ('\n<!-- Cloudflare Web Analytics -->'
+            '<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" '
+            'data-cf-beacon=\'{"token": "%s"}\'></script>'
+            '<!-- End Cloudflare Web Analytics -->' % ANALYTICS_TOKEN)
 
 PRIVACY = ("<strong>Nothing you tick or type is stored or sent.</strong> Every worksheet is "
  "local to your browser and vanishes when you close the tab.")

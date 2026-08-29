@@ -83,6 +83,11 @@ def build(key):
 
     html = inline_assets(html, PAGES[key])
 
+    # The Artifact sandbox blocks third-party scripts, so the analytics beacon
+    # would be a request that can never succeed. Strip it rather than ship it.
+    html = re.sub(r"\s*<!-- Cloudflare Web Analytics -->.*?<!-- End Cloudflare Web Analytics -->",
+                  "", html, flags=re.S)
+
     for other, url in ARTIFACTS.items():
         if other == key:
             continue
