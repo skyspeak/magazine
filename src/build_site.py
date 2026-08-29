@@ -364,6 +364,39 @@ def kids_contents():
                 page_path="kids/no-02-11-ten-things-to-ask-for.html", image="contents-kids.png")
 
 
+def school_entry_pages():
+    """Distinct entry paths for links handed to schools, at s/<no>.html.
+
+    Cloudflare Web Analytics reports the path only - query strings and hashes
+    are both stripped from the beacon payload (verified by intercepting it), and
+    email clients drop the referrer. So a newsletter click is indistinguishable
+    from someone typing the URL unless it lands on a path of its own.
+
+    These are the same page, not a redirect: a redirect would race the beacon,
+    which fires an XHR immediately and would be cancelled by the navigation.
+    Each one carries a canonical pointing at the real issue so search engines
+    consolidate them, and they are kept out of sitemap.xml.
+    """
+    out = []
+    for n, i in enumerate(ISSUES):
+        prev = ISSUES[n - 1] if n else None
+        nxt = ISSUES[n + 1] if n + 1 < len(ISSUES) else None
+        html = parent_page(i, prev, nxt)
+        real = f"{SITE}parents/no-{i['no']}-{i['slug']}.html"
+        # point canonical and og:url at the real issue, not at the tracking path
+        html = re.sub(r'<link rel="canonical" href="[^"]*">',
+                      f'<link rel="canonical" href="{real}">', html)
+        html = re.sub(r'<meta property="og:url" content="[^"]*">',
+                      f'<meta property="og:url" content="{real}">', html)
+        # sits one level deep like parents/, so ../assets and ../kids still
+        # resolve - but bare sibling links (the pager, the contents link) were
+        # relative to parents/ and must be repointed there.
+        html = re.sub(r'href="(?!\.\.|https?:|#|mailto:)([^"]+)"',
+                      r'href="../parents/\1"', html)
+        out.append((f"s/{i['no']}.html", html))
+    return out
+
+
 def schools_page():
     """The institutional offer.
 
@@ -382,7 +415,7 @@ def schools_page():
       <span class="bt">No. {a['no']} &middot; {a['band']}</span>
       <div class="bx" id="b{a['no']}"><strong>{a['ask']}</strong> &mdash; {a['q']}
       A free one-page guide for parents, plus a version written for your child. No sign-up and nothing to install:
-      {SITE}{a['p']}</div>
+      {SITE}s/{a['no']}.html</div>
       <button type="button" class="copy" data-copy="#b{a['no']}">Copy</button>
     </div>""" for a in ALL)
 
@@ -561,6 +594,7 @@ def build():
     out.append(("kids/no-02-11-ten-things-to-ask-for.html", kids_contents()))
     out.append(("index.html", index_page()))
     out.append(("for-schools.html", schools_page()))
+    out.extend(school_entry_pages())
     for path, htm in out:
         full = os.path.join(REPO, path)
         os.makedirs(os.path.dirname(full), exist_ok=True)
