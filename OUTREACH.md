@@ -24,7 +24,25 @@ and there is nothing to sign up for.
 5. **Paediatric and GP practices, libraries, youth groups** — waiting-room
    printables. Slowest and most gatekept; leave until the others are working.
 
+## The assets
+
+Everything you need to send is generated into `outreach/`:
+
+- `emails.md` - seven emails, ready to paste. Newsletter editor, pastoral lead,
+  librarian, club secretary, one follow-up, a reply for when they say yes, and
+  a reply for the AI question. Three subject lines each.
+- `blurbs.txt` - the eleven newsletter paragraphs as plain text.
+- `links.csv` - issue, age band and tracked link, for pasting into a sheet.
+- `tracker-template.csv` - the send log. Copy it to `tracker.csv` before you
+  use it. That filename is gitignored, because a filled tracker holds the names
+  and email addresses of real people and this repository is public.
+
+Regenerate with `python3 src/build_outreach.py`. The blurbs and links come from
+`src/content.py`, so they cannot drift from the site. The emails are hand
+written and live in that script.
+
 ## The email
+
 
 Short. One link. No attachment . Attachments from strangers do not get opened.
 

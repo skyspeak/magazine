@@ -15,3 +15,6 @@ __pycache__/
 # Self-contained copies built for publishing as Artifacts
 build/
 og/_card.html
+
+# Filled outreach tracker: holds real contact details, never commit it
+outreach/tracker.csv
